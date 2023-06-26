@@ -24,46 +24,58 @@ body {
     background-color: rgb(220, 220, 220);
     font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
         "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-    .body-container {
-        background-image: $gradientColorBody;
-        box-shadow: 0em 2em 2em 0em gray;
-    }
-    // header
-    // header {
-    //     background-image: $gradientColor;
-    //     height: 4em;
-    //     position: sticky;
-    //     top: 0;
-    //     z-index: 2;
-    //     nav {
-    //         .mobile-nav-true {
-    //             text-align: right;
-    //             @include mQ(60em) {
-    //                 display: none;
-    //             }
-    //         }
-    //         .mobile-nav-false {
-    //             display: none;
-    //             .nav-link {
-    //                 text-decoration: none;
-    //                 color: white;
-    //                 font-size: 2.5em;
-    //                 padding: 0 1em;
-    //                 &:hover {
-    //                     color: black;
-    //                 }
-    //             }
-    //             @include mQ(60em) {
-    //                 display: block;
-    //                 margin-right: 0;
-    //                 text-align: right;
-    //             }
-    //         }
-    //     }
+    // .body-container {
+    //     background-image: $gradientColorBody;
+    //     box-shadow: 0em 2em 2em 0em gray;
     // }
+    // header
+    header {
+        background-image: $gradientColor;
+        height: 4em;
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        nav {
+            .mobile-nav-true {
+                text-align: right;
+                @include mQ(60em) {
+                    display: none;
+                }
+            }
+            .mobile-nav-false {
+                display: none;
+                .nav-link {
+                    text-decoration: none;
+                    color: white;
+                    font-size: 3em;
+                    padding: 0 1em;
+                    &:hover {
+                        color: black;
+                    }
+                }
+                @include mQ(60em) {
+                    display: block;
+                    margin-right: 0;
+                    text-align: right;
+                }
+            }
+        }
+    }
 }
 
 //DASHBOARD
+.dashboard-nav {
+    .nav-link {
+        text-decoration: none;
+        color: white;
+        font-size: 3em;
+        padding: 0 1em;
+        &:hover {
+            color: black;
+        }
+    }
+}
+
 .dashboard-article-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
