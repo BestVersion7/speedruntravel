@@ -8,7 +8,7 @@ const ArticlePage = async () => {
         <>
             <h1>Legend:</h1>
             <div className="dashboard-article-create-top-section">
-                <Link href={`/dashboard/article/create`}>
+                <Link href={`/dashboard/articles/create`}>
                     <div className="dashboard-article-create-section">
                         <h2>Create (+)</h2>
                     </div>
@@ -24,7 +24,7 @@ const ArticlePage = async () => {
                 <>
                     <ArticleCardMapped
                         articles={articles}
-                        url_base="dashboard/article"
+                        url_base="dashboard/articles"
                     />
                 </>
             </div>

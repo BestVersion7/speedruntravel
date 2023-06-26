@@ -5,11 +5,11 @@ export default function RootLayout({ children }) {
         <>
             <header>
                 <nav className="dashboard-nav">
-                    <Link className="nav-link" href="/dashboard/article">
-                        Article
+                    <Link className="nav-link" href="/dashboard/articles">
+                        Articles
                     </Link>
-                    <Link className="nav-link" href="/dashboard/reel">
-                        Reel
+                    <Link className="nav-link" href="/dashboard/reels">
+                        Reels
                     </Link>
                 </nav>
             </header>

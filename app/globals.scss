@@ -63,6 +63,22 @@ body {
     }
 }
 
+// react markdown articles
+// article page :slug
+article {
+    img {
+        width: 20em;
+    }
+    // the list will push the margin out so have to resize the img no overflow
+    ol {
+        li {
+            img {
+                width: 16em;
+            }
+        }
+    }
+}
+
 //DASHBOARD
 .dashboard-nav {
     .nav-link {
