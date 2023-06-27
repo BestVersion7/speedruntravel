@@ -26,10 +26,6 @@ const ReelForm = (props) => {
     const imageRef = useRef();
     const categoryRef = useRef();
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-    };
-
     const handleCreate = async () => {
         const data3 = {
             reel_date: dateRef.current.value,
@@ -40,7 +36,7 @@ const ReelForm = (props) => {
             reel_video_thumbnail: videoThumbnailRef,
         };
         try {
-            console.log(data3)
+            console.log(data3);
             router.push("/dashboard/reels");
         } catch (err) {
             return alert(err);
@@ -58,6 +54,7 @@ const ReelForm = (props) => {
         };
         try {
             console.log(data3);
+            router.push("/dashboard/reels");
         } catch (err) {
             return alert(err);
         }
@@ -77,7 +74,7 @@ const ReelForm = (props) => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={(e) => e.preventDefault()}>
             <p>
                 <Switch
                     checked={publicRef}

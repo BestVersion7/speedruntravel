@@ -1,4 +1,6 @@
-import ArticleForm from "../../../components/ArticleForm";
+import ArticleForm from "@/app/components/ArticleForm";
+import ArticleCardDetail from "@/app/components/ArticleCardDetail";
+import TogglePreview from "@/app/components/TogglePreview";
 
 const datenow = new Date();
 const date2 = datenow.toISOString();
@@ -16,7 +18,8 @@ const CreateArticlePage = () => {
     return (
         <>
             <h2>Create Here</h2>
-            <div className="master-blog-container">
+            <TogglePreview />
+            <div className="dashboard-article-container">
                 <div>
                     <ArticleForm
                         article_public={article.articlePublic}
@@ -27,6 +30,11 @@ const CreateArticlePage = () => {
                         crud="create"
                     />
                 </div>
+                <ArticleCardDetail
+                    article_title={article.articleTitle}
+                    article_date={article.articleDate}
+                    article_post={article.articlePost}
+                />
             </div>
         </>
     );

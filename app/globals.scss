@@ -63,6 +63,26 @@ body {
     }
 }
 
+footer {
+    background-image: $gradientColor;
+    text-align: center;
+    color: white;
+    font-family: cursive;
+    // color: darken($color: white, $amount: 10);
+    a {
+        padding: 0 0.3em;
+        // height: 3em
+    }
+    .footer-2 {
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+        justify-items: left;
+        .footer-subscribe-button {
+            justify-self: right;
+        }
+    }
+}
+
 // react markdown articles
 // article page :slug
 article {

@@ -7,7 +7,7 @@ export default function TogglePreview() {
 
     const handleTogglePreview = () => {
         setToggle((value) => !value);
-        if (toggle) {
+        if (!toggle) {
             document.getElementsByClassName(
                 "dashboard-article-container"
             )[0].style.gridTemplateColumns = "1fr";
