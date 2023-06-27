@@ -1,3 +1,5 @@
+"use client"
+
 import { memo } from "react";
 import { GoogleMap, LoadScript } from "@react-google-maps/api";
 

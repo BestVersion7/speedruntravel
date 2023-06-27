@@ -35,31 +35,52 @@ body {
         position: sticky;
         top: 0;
         z-index: 2;
-        nav {
-            .mobile-nav-true {
-                text-align: right;
-                @include mQ(60em) {
-                    display: none;
-                }
-            }
-            .mobile-nav-false {
+
+        .mobile-nav-true {
+            text-align: right;
+            @include mQ(60em) {
                 display: none;
-                .nav-link {
-                    text-decoration: none;
-                    color: white;
-                    font-size: 3em;
-                    padding: 0 1em;
-                    &:hover {
-                        color: black;
-                    }
-                }
-                @include mQ(60em) {
-                    display: block;
-                    margin-right: 0;
-                    text-align: right;
-                }
             }
         }
+        .mobile-nav-false {
+            display: none;
+            .nav-link {
+                text-decoration: none;
+                color: white;
+                font-size: 3em;
+                padding: 0 1em;
+                &:hover {
+                    color: black;
+                }
+            }
+            @include mQ(60em) {
+                display: block;
+                margin-right: 0;
+                text-align: right;
+            }
+        }
+    }
+}
+
+// header nov box own component
+.mobile-drawer {
+    @include mQ(60em) {
+        display: none;
+    }
+    .mobile-drawer-header {
+        height: 4em;
+        background-color: darken(#005bbc, 4);
+    }
+}
+
+// repeat navlink
+.nav-link {
+    font-family: cursive;
+    font-style: italic;
+    text-decoration: none;
+    font-size: 2em;
+    &:hover {
+        color: black;
     }
 }
 
@@ -81,6 +102,13 @@ footer {
             justify-self: right;
         }
     }
+}
+
+// contact page
+.contact-page {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(21em, 1fr));
+    grid-gap: 3em;
 }
 
 // react markdown articles

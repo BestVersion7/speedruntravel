@@ -1,8 +1,9 @@
+"use client";
+
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { useRef, useState } from "react";
-import BasicModal from "../components/BasicModal";
-import axios from "axios";
+import BasicModal from "./BasicModal";
 
 const ContactForm = () => {
     const nameRef = useRef();
@@ -37,7 +38,7 @@ const ContactForm = () => {
                     // maxWidth: "35em",
                     gridGap: "1em",
                 }}
-                onSubmit={handleSubmit}
+                onSubmit={() => {}}
             >
                 <TextField
                     inputRef={nameRef}
