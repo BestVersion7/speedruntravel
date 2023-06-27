@@ -11,6 +11,7 @@ const options = {
 };
 
 const publicOptions = {
+    // cache: 'no-store',
     next: {
         revalidate: 3600,
     },
@@ -91,6 +92,19 @@ export const fetchOffsetReels = async (index) => {
     try {
         const results = await fetch(
             `${publicUrl}/reel/offset?index=${index}`,
+            publicOptions
+        );
+        const data = await results.json();
+        return data;
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+export const fetchOffsetReelsByCity = async (index, city) => {
+    try {
+        const results = await fetch(
+            `${publicUrl}/reel/offset?index=${index}&city=${city}`,
             publicOptions
         );
         const data = await results.json();

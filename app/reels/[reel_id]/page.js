@@ -1,6 +1,6 @@
 import { fetchAllPublicReels, fetchOffsetReels } from "@/app/utils/apiCalls";
 import ImageModal from "@/app/components/ImageModal";
-import Link from "next/link";
+import ReelCardMapped from "@/app/components/ReelCardMapped";
 
 export const generateStaticParams = () => {
     return [{ reel_id: "92" }];
@@ -30,12 +30,13 @@ export default async function ({ params }) {
     return (
         <div>
             <ImageModal
+                redirectUrl="reels"
                 threeReels={threeReels}
                 startIndex={startIndex}
                 endIndex={endIndex}
                 paramsId={params.reel_id}
             />
-            yo
+            <ReelCardMapped reels={reels} url_base="reels" />
         </div>
     );
 }

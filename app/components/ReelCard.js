@@ -37,7 +37,3 @@ const ReelCard = (props) => {
 };
 
 export default ReelCard;
-
-ReelCard.defaultProps = {
-    url_base: "reels",
-};

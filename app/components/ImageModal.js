@@ -11,11 +11,6 @@ import Box from "@mui/material/Box";
 function ImageModal2(props) {
     const router = useRouter();
 
-    let redirectUrl = "reels";
-    // router.query.city
-    //     ? (redirectUrl = `reels/city/${router.query.city}`)
-    //     : (redirectUrl = "reels");
-
     const compareOne = (index) => {
         let display;
         index === 1 ? (display = "block") : (display = "none");
@@ -39,7 +34,7 @@ function ImageModal2(props) {
     };
 
     const handleClick = (index) => {
-        router.push(`/${redirectUrl}/${index}`);
+        router.push(`/${props.redirectUrl}/${index}`);
     };
     return (
         <>
@@ -98,7 +93,7 @@ function ImageModal2(props) {
                     top: 0,
                 }}
                 variant="contained"
-                onClick={() => router.push(`/${redirectUrl}`)}
+                onClick={() => router.push(`/${props.redirectUrl}`)}
             >
                 X
             </Button>
@@ -109,7 +104,7 @@ function ImageModal2(props) {
 export default function ImageModal(props) {
     const router = useRouter();
     const handleClose = () => {
-        router.push("/reels");
+        router.push(`/${props.redirectUrl}`);
     };
     return (
         <Modal
@@ -124,7 +119,7 @@ export default function ImageModal(props) {
             <Box className="modal-box-2">
                 {props.threeReels.map((item, index) => (
                     <ImageModal2
-                        paramsId={props.reel_id}
+                        redirectUrl={props.redirectUrl}
                         reel_category={item.reel_category}
                         reel_id={item.reel_id}
                         index={index}
@@ -133,6 +128,7 @@ export default function ImageModal(props) {
                         end_index={props.endIndex}
                         key={index}
                         reel_video={item.reel_video}
+                        paramsId={props.paramsId}
                     />
                 ))}
             </Box>
