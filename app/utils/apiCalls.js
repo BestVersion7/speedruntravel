@@ -20,7 +20,7 @@ const publicOptions = {
 
 export const fetchAllPublicArticles = async () => {
     try {
-        const results = await fetch(`${url}/article`, publicOptions);
+        const results = await fetch(`${publicUrl}/article`, publicOptions);
         const data = await results.json();
         return data;
     } catch (err) {
@@ -29,7 +29,10 @@ export const fetchAllPublicArticles = async () => {
 };
 export const fetchLimitPublicArticles = async () => {
     try {
-        const results = await fetch(`${url}/article/limit`, publicOptions);
+        const results = await fetch(
+            `${publicUrl}/article/limit`,
+            publicOptions
+        );
         const data = await results.json();
         return data;
     } catch (err) {
@@ -40,7 +43,7 @@ export const fetchLimitPublicArticles = async () => {
 export const fetchPublicArticleById = async (article_id) => {
     try {
         const results = await fetch(
-            `${url}/article?article_id=${article_id}`,
+            `${publicUrl}/article?article_id=${article_id}`,
             publicOptions
         );
         const data = await results.json();
@@ -52,7 +55,7 @@ export const fetchPublicArticleById = async (article_id) => {
 
 export const fetchAllPublicReels = async () => {
     try {
-        const results = await fetch(`${url}/reel`, publicOptions);
+        const results = await fetch(`${publicUrl}/reel`, publicOptions);
         const data = await results.json();
         return data;
     } catch (err) {
@@ -62,7 +65,7 @@ export const fetchAllPublicReels = async () => {
 
 export const fetchLimitPublicReels = async () => {
     try {
-        const results = await fetch(`${url}/reel/limit`, publicOptions);
+        const results = await fetch(`${publicUrl}/reel/limit`, publicOptions);
         const data = await results.json();
         return data;
     } catch (err) {
@@ -72,7 +75,10 @@ export const fetchLimitPublicReels = async () => {
 
 export const fetchAllPublicReelsByCity = async (city) => {
     try {
-        const results = await fetch(`${url}/reel?city=${city}`, publicOptions);
+        const results = await fetch(
+            `${publicUrl}/reel?city=${city}`,
+            publicOptions
+        );
         const data = await results.json();
         return data;
     } catch (err) {

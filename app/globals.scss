@@ -47,7 +47,7 @@ body {
             .nav-link {
                 text-decoration: none;
                 color: white;
-                font-size: 3em;
+                font-size: 2.5em;
                 padding: 0 1em;
                 &:hover {
                     color: black;
@@ -132,7 +132,7 @@ article {
     .nav-link {
         text-decoration: none;
         color: white;
-        font-size: 3em;
+        font-size: 2.5em;
         padding: 0 1em;
         &:hover {
             color: black;
@@ -240,5 +240,60 @@ article {
                 text-decoration: underline;
             }
         }
+    }
+}
+
+.article-page-divider {
+    @include mQ(60em) {
+        display: grid;
+        grid-template-columns: auto auto;
+        // grid-template-columns: 2fr 1fr;
+        grid-gap: 2em;
+    }
+
+    .article-ai-body {
+        @include mQ(60em) {
+            border-left: 1px solid gray;
+            padding-left: 2em;
+        }
+        @include mQWH(60em, 40em) {
+            position: sticky;
+            height: 100vh;
+            top: 4em;
+        }
+
+        .article-ai-card {
+            display: grid;
+            grid-gap: 1em;
+            grid-template-rows: repeat(auto-fill, minmax(1em, 1fr));
+            .card-media {
+                width: 7em;
+                @include mQ(60em) {
+                    width: 5em;
+                }
+            }
+            .article-item {
+                &:hover {
+                    opacity: 0.8;
+                }
+            }
+        }
+        #ad-banner {
+            height: 5em;
+            width: 100%;
+            color: black;
+            background-color: red;
+        }
+    }
+}
+
+.section-profile-about {
+    display: grid;
+    @include mQ(30em) {
+        grid-gap: 2em;
+        grid-template-columns: minmax(auto, 6.25em) 1fr;
+    }
+    .rounded-full {
+        border-radius: 15em;
     }
 }
