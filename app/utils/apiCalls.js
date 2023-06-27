@@ -27,10 +27,24 @@ export const fetchAllPublicArticles = async () => {
         console.log(err);
     }
 };
-export const fetchLimitPublicArticles = async () => {
+
+export const fetchSixPublicArticles = async () => {
     try {
         const results = await fetch(
-            `${publicUrl}/article/limit`,
+            `${publicUrl}/article/limit?count=6`,
+            publicOptions
+        );
+        const data = await results.json();
+        return data;
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+export const fetchTwelvePublicArticles = async () => {
+    try {
+        const results = await fetch(
+            `${publicUrl}/article/limit?count=12`,
             publicOptions
         );
         const data = await results.json();
@@ -66,6 +80,19 @@ export const fetchAllPublicReels = async () => {
 export const fetchLimitPublicReels = async () => {
     try {
         const results = await fetch(`${publicUrl}/reel/limit`, publicOptions);
+        const data = await results.json();
+        return data;
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+export const fetchOffsetReels = async (index) => {
+    try {
+        const results = await fetch(
+            `${publicUrl}/reel/offset?index=${index}`,
+            publicOptions
+        );
         const data = await results.json();
         return data;
     } catch (err) {

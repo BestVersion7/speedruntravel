@@ -17,7 +17,7 @@ export default function Navigation() {
     };
 
     return (
-        <>
+        <header>
             <nav className="mobile-nav-false">
                 <Link className="nav-link" href="/">
                     Home
@@ -91,6 +91,6 @@ export default function Navigation() {
                     </Box>
                 </Drawer>
             </nav>
-        </>
+        </header>
     );
 }

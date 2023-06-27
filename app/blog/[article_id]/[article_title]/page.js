@@ -1,6 +1,10 @@
 import ArticleCardDetail from "@/app/components/ArticleCardDetail";
-import { fetchPublicArticleById } from "@/app/utils/apiCalls";
+import {
+    fetchPublicArticleById,
+    fetchSixPublicArticles,
+} from "@/app/utils/apiCalls";
 import Image from "next/image";
+import ArticleAi from "@/app/components/ArticleAi";
 
 export const generateStaticParams = () => {
     return [
@@ -13,6 +17,10 @@ export const generateStaticParams = () => {
 
 const ArticleTitlePage = async ({ params }) => {
     const article = await fetchPublicArticleById(params.article_id);
+    const sixArticles = await fetchSixPublicArticles();
+    const filter = sixArticles.filter(
+        (item) => item.article_id !== parseInt(params.article_id)
+    );
 
     return (
         <>
@@ -51,7 +59,10 @@ const ArticleTitlePage = async ({ params }) => {
                 </div>
                 <aside className="article-ai-body">
                     <h2>More Articles:</h2>
-                    {/* <ArticleAi article_id={articleData.article_id} /> */}
+                    <ArticleAi
+                        article_id={params.article_id}
+                        articles={filter}
+                    />
                     {/* <Adsense /> */}
                 </aside>
             </div>

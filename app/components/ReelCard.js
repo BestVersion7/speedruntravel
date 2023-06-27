@@ -5,7 +5,6 @@ const ReelCard = (props) => {
     return (
         <Link
             id={`ig-reel-image-${props.reel_responsive_key}`}
-            scroll={false}
             href={`/${props.url_base}/${props.reel_id}`}
         >
             <>
@@ -40,5 +39,5 @@ const ReelCard = (props) => {
 export default ReelCard;
 
 ReelCard.defaultProps = {
-    url_base: "/reels",
+    url_base: "reels",
 };
