@@ -8,7 +8,7 @@ const ReelPage = async () => {
         <>
             <h1>Legend:</h1>
             <div className="dashboard-article-create-top-section">
-                <Link href={`/dashboard/reels/create`}>
+                <Link passHref legacyBehavior href={`/dashboard/reels/create`}>
                     <div className="dashboard-article-create-section">
                         <h2>Create (+)</h2>
                     </div>

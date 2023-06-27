@@ -4,7 +4,11 @@ import { transformTitle } from "../utils/transformTitle";
 export default function ArticleCard(props) {
     const articleName = transformTitle(props.article_title);
     return (
-        <Link href={`/${props.url_base}/${props.article_id}/${articleName}`}>
+        <Link
+            passHref
+            href={`/${props.url_base}/${props.article_id}/${articleName}`}
+            legacyBehavior
+        >
             <div
                 className={`article-card-blog-${props.article_public}`}
                 style={{

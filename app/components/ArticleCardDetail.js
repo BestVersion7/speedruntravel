@@ -19,7 +19,7 @@ const ArticleCardDetail = (props) => {
                     Thank you for reading this article. Let me know your
                     thoughts! Get notified when a new article comes out!{" "}
                     {/* <SubscriberButton />{" "} */}
-                    <Link href="/support">
+                    <Link href="/support" passHref legacyBehavior>
                         <Button variant="contained">Support My Blog</Button>
                     </Link>
                 </b>
