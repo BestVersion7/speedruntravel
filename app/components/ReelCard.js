@@ -6,7 +6,7 @@ const ReelCard = (props) => {
         <Link
             id={`ig-reel-image-${props.reel_responsive_key}`}
             scroll={false}
-            href={props.pathname}
+            href={`/${props.url_base}/${props.reel_id}`}
         >
             <>
                 {props.reel_video ? (

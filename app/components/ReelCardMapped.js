@@ -23,7 +23,6 @@ const ReelCardMapped = (props) => {
                             reel_public={item.reel_public}
                             reel_video={item.reel_video}
                             reel_video_thumbnail={item.reel_video_thumbnail}
-                            pathname={props.pathname}
                         />
                     </div>
                 );

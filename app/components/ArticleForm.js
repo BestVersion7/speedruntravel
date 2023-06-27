@@ -5,102 +5,95 @@ import { useRouter } from "next/navigation";
 import TextField from "@mui/material/TextField";
 import TextAreaAutosize from "@mui/material/TextareaAutosize";
 import Switch from "@mui/material/Switch";
-// import BasicModal from "./BasicModal";
-import { useState } from "react";
+import BasicModal from "./BasicModal";
+import { useState, useRef } from "react";
+import Image from "next/image";
 
 const ArticleForm = (props) => {
     const router = useRouter();
     const [openModal, setOpenModal] = useState(false);
-
     const [loading, setLoading] = useState(false);
+    const [publicRef, setPublicRef] = useState(props.article_public);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-    };
+    const dateRef = useRef();
+    const titleRef = useRef();
+    const postRef = useRef();
+    const imageSmallRef = useRef();
 
     const handleCreate = async () => {
+        const data3 = {
+            article_date: dateRef.current.value,
+            article_title: titleRef.current.value,
+            article_post: postRef.current.value,
+            article_image_small: imageSmallRef.current.value,
+            article_public: publicRef,
+        };
         try {
-            await axios.post(`/api/article`, {
-                article_date: `${props.article_date}`,
-                article_title: props.article_title,
-                article_post: props.article_post,
-                article_image_small: props.article_image_small,
-                article_public: props.article_public,
-            });
-            router.push("/master/blog");
+            console.log(data3);
+            router.push("/dashboard/articles");
         } catch (err) {
             return alert(err);
         }
     };
 
     const handleUpdate = async () => {
+        const data3 = {
+            article_date: dateRef.current.value,
+            article_title: titleRef.current.value,
+            article_post: postRef.current.value,
+            article_image_small: imageSmallRef.current.value,
+            article_public: publicRef,
+        };
         try {
-            await axios.put(
-                `/api/article?article_id=${props.articleRaw.article_id}`,
-                {
-                    article_date: props.article_date,
-                    article_title: props.article_title,
-                    article_post: props.article_post,
-                    article_image_small: props.article_image_small,
-                    article_public: props.article_public,
-                }
-            );
             setLoading(!loading);
+            console.log(data3);
             setOpenModal(false);
-            router.push("/master/blog");
+            router.push("/dashboard/articles");
         } catch (err) {
             return alert(err);
         }
     };
 
     const handleReset = () => {
-        props.setArticleDate(props.articleRaw.article_date);
-        props.setArticleTitle(props.articleRaw.article_title);
-        props.setArticleImage(props.articleRaw.article_image);
-        props.setArticleImageSmall(props.articleRaw.article_image_small);
-        props.setArticlePost(props.articleRaw.article_post);
-        props.setArticlePublic(props.articleRaw.article_public);
+        dateRef.current.value = props.article_date;
+        titleRef.current.value = props.article_title;
+        postRef.current.value = props.article_post;
+        imageSmallRef.current.value = props.article_image_small;
+        setPublicRef(props.article_public);
     };
 
     const handleCancel = () => {
-        router.push("/master/blog");
+        router.push("/dashboard/articles");
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={(e) => e.preventDefault()}>
             <p>
                 <Switch
-                    checked={props.article_public}
-                    onChange={() =>
-                        props.setArticlePublic(!props.article_public)
-                    }
+                    checked={publicRef}
+                    onChange={() => setPublicRef((v) => !v)}
                 />
-                {props.article_public ? (
-                    <span>Public</span>
-                ) : (
-                    <span>Private</span>
-                )}
+                {publicRef ? <span>Public</span> : <span>Private</span>}
             </p>
             <TextField
                 label="Title"
                 fullWidth
-                value={props.article_title}
-                onChange={(e) => props.setArticleTitle(e.target.value)}
+                defaultValue={props.article_title}
+                inputRef={titleRef}
             />
             <br /> <br />
             <TextField
                 label="Date"
                 fullWidth
-                value={props.article_date}
-                onChange={(e) => props.setArticleDate(e.target.value)}
+                defaultValue={props.article_date}
+                inputRef={dateRef}
             />
             <br />
             <p>Article Body</p>
-            <TextAreaAutosize
-                minRows={5}
-                style={{ width: "100%" }}
-                value={props.article_post}
-                onChange={(e) => props.setArticlePost(e.target.value)}
+            <textarea
+                style={{ width: "100%", height: "50em" }}
+                defaultValue={props.article_post}
+                ref={postRef}
             />
             <br />
             <TextField
@@ -108,16 +101,14 @@ const ArticleForm = (props) => {
                 multiline
                 label="Cover Image"
                 rows={5}
-                value={props.article_image_small}
-                onChange={(e) => props.setArticleImageSmall(e.target.value)}
+                defaultValue={props.article_image_small}
+                inputRef={imageSmallRef}
             />
             <br />
             <br />
-            <img
+            <Image
                 width={350}
-                // height={350}
-                // layout="responsive"
-                // objectFit="contain"
+                height={350}
                 src={props.article_image_small}
                 alt="picture"
             />
@@ -135,7 +126,7 @@ const ArticleForm = (props) => {
                     >
                         Update
                     </Button>
-                    {/* <BasicModal
+                    <BasicModal
                         openModal={openModal}
                         setOpenModal={setOpenModal}
                     >
@@ -147,7 +138,7 @@ const ArticleForm = (props) => {
                         >
                             Update
                         </Button>
-                    </BasicModal> */}
+                    </BasicModal>
 
                     <Button variant="contained" onClick={handleReset}>
                         Reset

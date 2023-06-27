@@ -1,27 +1,18 @@
+import { fetchReelById } from "@/app/utils/apiCalls";
 import ReelForm from "@/app/components/ReelForm";
 
-const datenow = new Date();
-const date2 = datenow.toISOString();
+const DashboardReelPage = async ({ params }) => {
+    const reel = await fetchReelById(params.reel_id);
 
-// default props
-const reel = {
-    reel_public: false,
-    reel_image:
-        "https://res.cloudinary.com/crimson-flamingo/image/upload/v1561049193/030519%20drinks/drink-1561049192317.jpg",
-    reel_category: "",
-    reel_date: date2,
-    reel_video: false,
-    reel_video_thumbnail: "",
-};
-
-const CreateReelPage = () => {
     return (
         <>
-            <h2>Create Here</h2>
+            <h2>
+                Update Reel Here (updates will take 1 hour to show on home page)
+            </h2>
             <div className="dashboard-article-container">
                 <ReelForm
                     reel_public={reel.reel_public}
-                    crud="create"
+                    crud="update"
                     reel_image={reel.reel_image}
                     reel_category={reel.reel_category}
                     reel_date={reel.reel_date}
@@ -33,4 +24,4 @@ const CreateReelPage = () => {
     );
 };
 
-export default CreateReelPage;
+export default DashboardReelPage;

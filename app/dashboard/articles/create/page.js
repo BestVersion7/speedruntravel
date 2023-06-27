@@ -1,61 +1,33 @@
-"use client"
+import ArticleForm from "../../../components/ArticleForm";
 
-import { fetchArticleById } from "@/app/utils/apiCalls";
-// import ArticleForm from "../../../components/ArticleForm";
-import { useState } from "react";
-// import ArticleCardDetail from "../../../components/ArticleCardDetail";
-// import TogglePreview from "../../../components/TogglePreview";
+const datenow = new Date();
+const date2 = datenow.toISOString();
+
+const article = {
+    articleImageSmall:
+        "https://res.cloudinary.com/crimson-flamingo/image/upload/v1561049193/030519%20drinks/drink-1561049192317.jpg",
+    articlePublic: false,
+    articleTitle: "",
+    articleDate: date2,
+    articlePost: "",
+};
 
 const CreateArticlePage = () => {
-    // const [articleDate, setArticleDate] = useState(new Date().toISOString());
-    // const [articleTitle, setArticleTitle] = useState("");
-    // const [articlePost, setArticlePost] = useState("");
-    // const [articleImageSmall, setArticleImageSmall] = useState(
-    //     "https://res.cloudinary.com/crimson-flamingo/image/upload/v1561049193/030519%20drinks/drink-1561049192317.jpg"
-    // );
-    // const [articleImage, setArticleImage] = useState(
-    //     "https://res.cloudinary.com/crimson-flamingo/image/upload/v1561049193/030519%20drinks/drink-1561049192317.jpg"
-    // );
-    // const [articlePublic, setArticlePublic] = useState(false);
-
-    // const [toggle, setToggle] = useState(true);
-
-    // const data = fetchArticleById()
-    // console.log(params)
-
     return (
         <>
             <h2>Create Here</h2>
-            {/* <TogglePreview toggle={toggle} setToggle={setToggle} />
             <div className="master-blog-container">
                 <div>
                     <ArticleForm
-                        article_image={articleImage}
-                        article_public={articlePublic}
-                        article_title={articleTitle}
-                        article_date={articleDate}
-                        article_post={articlePost}
-                        article_image_small={articleImageSmall}
-                        setArticleDate={setArticleDate}
-                        setArticleTitle={setArticleTitle}
-                        setArticlePost={setArticlePost}
-                        setArticleImageSmall={setArticleImageSmall}
-                        setArticlePublic={setArticlePublic}
-                        setArticleImage={setArticleImage}
+                        article_public={article.articlePublic}
+                        article_title={article.articleTitle}
+                        article_date={article.articleDate}
+                        article_post={article.articlePost}
+                        article_image_small={article.articleImageSmall}
                         crud="create"
                     />
                 </div>
-
-                {toggle && (
-                    <div>
-                        <ArticleCardDetail
-                            article_title={articleTitle}
-                            article_date={articleDate}
-                            article_post={articlePost}
-                        />
-                    </div>
-                )}
-            </div> */}
+            </div>
         </>
     );
 };

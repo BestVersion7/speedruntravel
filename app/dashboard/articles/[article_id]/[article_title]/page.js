@@ -28,6 +28,7 @@ export default async function ArticleIdPage({ params }) {
             <div className="dashboard-article-container">
                 <div>
                     <ArticleForm
+                        crud="update"
                         article_date={article.article_date}
                         article_title={article.article_title}
                         article_post={article.article_post}

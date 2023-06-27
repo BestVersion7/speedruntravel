@@ -124,3 +124,38 @@ export const fetchReelsByCity = async (city) => {
         console.log(err);
     }
 };
+
+export const fetchReelById = async (reel_id) => {
+    try {
+        const results = await fetch(`${url}/reel?reel_id=${reel_id}`, options);
+        const data = await results.json();
+        return data;
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+export const createReel = async (data2) => {
+    try {
+        const results = await fetch(`${url}/reel`, {
+            method: "POST",
+            body: JSON.stringify(data2),
+        });
+        const data = await results.json();
+        return data;
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+export const updateReelById = async (reel_id) => {
+    try {
+        const results = await fetch(`${url}/reel?reel_id=${reel_id}`, {
+            method: "PUT",
+        });
+        const data = await results.json();
+        return data;
+    } catch (err) {
+        console.log(err);
+    }
+};
