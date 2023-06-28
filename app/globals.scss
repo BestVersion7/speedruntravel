@@ -391,3 +391,15 @@ article {
         border-radius: 15em;
     }
 }
+
+.subscriber-modal {
+    width: 16em;
+    margin: 1em;
+    height: 35em;
+    @include mQ(30em) {
+        width: 22em;
+    }
+    @include mQ(50em) {
+        width: 30em;
+    }
+}

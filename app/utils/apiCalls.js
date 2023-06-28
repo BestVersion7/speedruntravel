@@ -191,7 +191,7 @@ export const createArticle = async (data2) => {
         const results = await fetch(`${url}/article`, {
             method: "POST",
             body: JSON.stringify(data2),
-            headers: process.env.NEXT_PUBLIC_API_KEY,
+            headers: { authorization: process.env.NEXT_PUBLIC_API_KEY },
         });
         const data = await results.json();
         return data;
@@ -205,7 +205,7 @@ export const createReel = async (data2) => {
         const results = await fetch(`${url}/reel`, {
             method: "POST",
             body: JSON.stringify(data2),
-            headers: process.env.NEXT_PUBLIC_API_KEY,
+            headers: { authorization: process.env.NEXT_PUBLIC_API_KEY },
         });
         const data = await results.json();
         return data;
@@ -275,7 +275,7 @@ export const createSubscriber = async (data2) => {
         const results = await fetch(`${url}/subscriber`, {
             method: "POST",
             body: JSON.stringify(data2),
-            headers: process.env.NEXT_PUBLIC_API_KEY,
+            headers: { authorization: process.env.NEXT_PUBLIC_API_KEY },
         });
         const data = await results.json();
         return data;

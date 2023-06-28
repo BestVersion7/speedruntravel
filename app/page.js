@@ -5,6 +5,7 @@ import {
     fetchTwelvePublicArticles,
 } from "./utils/apiCalls";
 import ArticleCard from "./components/ArticleCard";
+import SubscriberButton from "./components/SubscriberButton";
 
 export default async function Home() {
     const articles = await fetchTwelvePublicArticles();
@@ -15,7 +16,7 @@ export default async function Home() {
                 Welcome to SpeedRunTravel blog where I write about my experience
                 visiting a new city and staying there for 24 hours or less. Let
                 me tell you my experience so you can decide to travel there or
-                to skip it.
+                to skip it. <SubscriberButton />
             </h2>
 
             <div style={{ textAlign: "right" }}>
