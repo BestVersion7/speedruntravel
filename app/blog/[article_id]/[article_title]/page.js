@@ -1,10 +1,13 @@
 import ArticleCardDetail from "@/app/components/ArticleCardDetail";
 import {
     fetchPublicArticleById,
-    fetchSixPublicArticles,
+    fetchFivePublicArticles,
+    fetchCommentsByArticleId,
 } from "@/app/utils/apiCalls";
 import Image from "next/image";
 import ArticleAi from "@/app/components/ArticleAi";
+import CommentForm from "@/app/components/CommentForm";
+import Comment from "@/app/components/Comment";
 
 export const generateStaticParams = () => {
     return [
@@ -17,10 +20,8 @@ export const generateStaticParams = () => {
 
 const ArticleTitlePage = async ({ params }) => {
     const article = await fetchPublicArticleById(params.article_id);
-    const sixArticles = await fetchSixPublicArticles();
-    const filter = sixArticles.filter(
-        (item) => item.article_id !== parseInt(params.article_id)
-    );
+    const fiveArticles = await fetchFivePublicArticles();
+    const comments = await fetchCommentsByArticleId(params.article_id);
 
     return (
         <>
@@ -58,14 +59,30 @@ const ArticleTitlePage = async ({ params }) => {
                     <hr />
                 </div>
                 <aside className="article-ai-body">
-                    <h2>More Articles:</h2>
+                    <h2>Most Recent:</h2>
                     <ArticleAi
                         article_id={params.article_id}
-                        articles={filter}
+                        articles={fiveArticles}
                     />
                     {/* <Adsense /> */}
                 </aside>
             </div>
+
+            <h2>Comments:</h2>
+            <CommentForm article_id={params.article_id} />
+            {comments.length > 0 ? (
+                comments.map((item) => (
+                    <Comment
+                        key={item.comment_id}
+                        comment_user_name={item.comment_user_name}
+                        comment_user_image={item.comment_user_image}
+                        comment_date={item.comment_date}
+                        comment_body={item.comment_body}
+                    />
+                ))
+            ) : (
+                <div>Be the first to comment!</div>
+            )}
         </>
     );
 };

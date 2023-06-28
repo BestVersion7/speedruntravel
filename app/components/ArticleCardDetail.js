@@ -3,7 +3,6 @@
 import ReactMarkdown from "react-markdown";
 import Link from "next/link";
 // import SubscriberButton from "../components/SubscriberButton";
-import Button from "@mui/material/Button";
 import { formatDate2 } from "../utils/formatDate";
 
 const ArticleCardDetail = (props) => {
@@ -19,8 +18,8 @@ const ArticleCardDetail = (props) => {
                     Thank you for reading this article. Let me know your
                     thoughts! Get notified when a new article comes out!{" "}
                     {/* <SubscriberButton />{" "} */}
-                    <Link href="/support" passHref legacyBehavior>
-                        <Button variant="contained">Support My Blog</Button>
+                    <Link href="/support" className="nav-link">
+                        Support My Blog
                     </Link>
                 </b>
             </p>

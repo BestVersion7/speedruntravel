@@ -27,8 +27,8 @@ body {
     .body-container {
         background-image: $gradientColorBody;
         box-shadow: 0em 2em 2em 0em gray;
-          // wrapping the section
-          .body-container-wrapper {
+        // wrapping the section
+        .body-container-wrapper {
             margin: 0 1em;
             @include mQ(30em) {
                 margin: 0 1.5em;
@@ -38,8 +38,6 @@ body {
             }
         }
     }
-
-
 
     header {
         background-image: $gradientColor;
@@ -91,6 +89,7 @@ body {
     font-style: italic;
     text-decoration: none;
     font-size: 2em;
+    color: #023d7c;
     &:hover {
         color: black;
     }
@@ -113,6 +112,18 @@ footer {
         .footer-subscribe-button {
             justify-self: right;
         }
+    }
+}
+
+.comment-body {
+    display: grid;
+    grid-template-columns: 3.5em 1fr;
+    // grid-template-rows: minmax(3em, 5em);
+    .comment-body-image {
+        border-radius: 10em;
+        height: 2.5em;
+        width: 2.5em;
+        // border-color: blue;
     }
 }
 

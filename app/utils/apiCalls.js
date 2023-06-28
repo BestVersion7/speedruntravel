@@ -17,6 +17,10 @@ const publicOptions = {
     },
 };
 
+const publicOptionsNoCache = {
+    cache: "no-cache",
+};
+
 // public does not require authorization
 
 export const fetchAllPublicArticles = async () => {
@@ -29,10 +33,10 @@ export const fetchAllPublicArticles = async () => {
     }
 };
 
-export const fetchSixPublicArticles = async () => {
+export const fetchFivePublicArticles = async () => {
     try {
         const results = await fetch(
-            `${publicUrl}/article/limit?count=6`,
+            `${publicUrl}/article/limit?count=5`,
             publicOptions
         );
         const data = await results.json();
@@ -187,6 +191,7 @@ export const createArticle = async (data2) => {
         const results = await fetch(`${url}/article`, {
             method: "POST",
             body: JSON.stringify(data2),
+            headers: process.env.NEXT_PUBLIC_API_KEY,
         });
         const data = await results.json();
         return data;
@@ -200,6 +205,7 @@ export const createReel = async (data2) => {
         const results = await fetch(`${url}/reel`, {
             method: "POST",
             body: JSON.stringify(data2),
+            headers: process.env.NEXT_PUBLIC_API_KEY,
         });
         const data = await results.json();
         return data;
@@ -253,8 +259,51 @@ export const createPayment = async (data2) => {
 export const fetchPaymentDetails = async (session_id) => {
     try {
         const results = await fetch(
-            `${url}/checkout_sessions?session_id=${session_id}`
+            `${url}/checkout_sessions?session_id=${session_id}`,
+            publicOptionsNoCache
         );
+        const data = await results.json();
+        return data;
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+// SUBSCRIBER
+export const createSubscriber = async (data2) => {
+    try {
+        const results = await fetch(`${url}/subscriber`, {
+            method: "POST",
+            body: JSON.stringify(data2),
+            headers: process.env.NEXT_PUBLIC_API_KEY,
+        });
+        const data = await results.json();
+        return data;
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+// comments/article
+export const fetchCommentsByArticleId = async (article_id) => {
+    try {
+        const results = await fetch(
+            `${publicUrl}/comment?article_id=${article_id}`,
+            publicOptionsNoCache
+        );
+        const data = await results.json();
+        return data;
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+export const createComment = async (data2) => {
+    try {
+        const results = await fetch(`${publicUrl}/comment`, {
+            method: "POST",
+            body: JSON.stringify(data2),
+        });
         const data = await results.json();
         return data;
     } catch (err) {
