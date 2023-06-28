@@ -182,6 +182,19 @@ export const fetchReelById = async (reel_id) => {
     }
 };
 
+export const createArticle = async (data2) => {
+    try {
+        const results = await fetch(`${url}/article`, {
+            method: "POST",
+            body: JSON.stringify(data2),
+        });
+        const data = await results.json();
+        return data;
+    } catch (err) {
+        console.log(err);
+    }
+};
+
 export const createReel = async (data2) => {
     try {
         const results = await fetch(`${url}/reel`, {
@@ -200,6 +213,48 @@ export const updateReelById = async (reel_id) => {
         const results = await fetch(`${url}/reel?reel_id=${reel_id}`, {
             method: "PUT",
         });
+        const data = await results.json();
+        return data;
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+// email
+export const createEmail = async (data2) => {
+    try {
+        const results = await fetch(`${url}/contact`, {
+            method: "POST",
+            body: JSON.stringify(data2),
+            headers: {
+                authorization: process.env.NEXT_PUBLIC_API_KEY,
+            },
+        });
+        const data = await results.json();
+        return data;
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+// stripe
+export const createPayment = async (data2) => {
+    try {
+        const results = await fetch(`${url}/checkout_sessions`, {
+            method: "POST",
+            body: JSON.stringify(data2),
+        });
+        const data = await results.json();
+        return data;
+    } catch (err) {
+        console.log(err);
+    }
+};
+export const fetchPaymentDetails = async (session_id) => {
+    try {
+        const results = await fetch(
+            `${url}/checkout_sessions?session_id=${session_id}`
+        );
         const data = await results.json();
         return data;
     } catch (err) {

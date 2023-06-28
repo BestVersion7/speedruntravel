@@ -6,7 +6,10 @@ export default async function ReelsPage() {
     const reels = await fetchAllPublicReels();
     return (
         <div>
-            <CityFilter city="" />
+            <div>
+                <h2>Cities:</h2>
+                <CityFilter city="" />
+            </div>
             <ReelCardMapped reels={reels} url_base="reels" />;
         </div>
     );

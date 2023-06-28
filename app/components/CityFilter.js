@@ -8,15 +8,11 @@ import Select from "@mui/material/Select";
 import Link from "next/link";
 import { Button } from "@mui/material";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 
 const CityFilter = (props) => {
     const router = useRouter();
 
-    const [city, setCity] = useState(props.city);
     const handleChange = (e) => {
-        // setCity(e.target.value);
-
         router.push(`/reels/city/${e.target.value}`);
     };
 

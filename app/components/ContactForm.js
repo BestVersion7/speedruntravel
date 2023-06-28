@@ -4,6 +4,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { useRef, useState } from "react";
 import BasicModal from "./BasicModal";
+import { createEmail } from "../utils/apiCalls";
 
 const ContactForm = () => {
     const nameRef = useRef();
@@ -11,14 +12,15 @@ const ContactForm = () => {
     const phoneRef = useRef();
     const messageRef = useRef();
     const [openModal, setOpenModal] = useState(false);
+
     const handleSubmit = async (e) => {
         try {
             e.preventDefault();
-            await axios.post("/api/contact", {
+            await createEmail({
                 name: nameRef.current.value,
                 email: emailRef.current.value,
-                phone: phoneRef.current.value,
                 message: messageRef.current.value,
+                phone: phoneRef.current.value,
             });
 
             setOpenModal(true);
@@ -38,7 +40,7 @@ const ContactForm = () => {
                     // maxWidth: "35em",
                     gridGap: "1em",
                 }}
-                onSubmit={() => {}}
+                onSubmit={handleSubmit}
             >
                 <TextField
                     inputRef={nameRef}

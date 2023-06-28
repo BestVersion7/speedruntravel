@@ -11,7 +11,10 @@ export default async function CityPageFilter({ params }) {
 
     return (
         <div>
-            <CityFilter city={params.city} />
+            <div>
+                <h2>Cities:</h2>
+                <CityFilter city={params.city} />
+            </div>
             <ReelCardMapped
                 url_base={`reels/city/${params.city}`}
                 reels={reels}
