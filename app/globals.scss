@@ -151,17 +151,6 @@ article {
 }
 
 //DASHBOARD
-.dashboard-nav {
-    .nav-link {
-        text-decoration: none;
-        color: white;
-        font-size: 2.5em;
-        padding: 0 1em;
-        &:hover {
-            color: black;
-        }
-    }
-}
 
 .dashboard-article-container {
     display: grid;

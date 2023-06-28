@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { memo } from "react";
-// import SubscriberButton from "./SubscriberButton";
+import SubscriberButton from "./SubscriberButton";
 import Link from "next/link";
 
 const Footer = () => {
@@ -10,7 +10,7 @@ const Footer = () => {
             Subscribe & Follow me on Instagram <br />
             <div className="footer-2">
                 <div className="footer-subscribe-button">
-                    {/* <SubscriberButton color="secondary" /> */}
+                    <SubscriberButton color="secondary" />
                 </div>
                 <a
                     href="https://instagram.com/hunterkfan"

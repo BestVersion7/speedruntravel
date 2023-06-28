@@ -2,17 +2,19 @@ import Link from "next/link";
 
 export default function RootLayout({ children }) {
     return (
-        <>
-            <nav className="dashboard-nav">
-                <Link className="nav-link" href="/dashboard/articles">
-                    Articles
-                </Link>
-                <Link className="nav-link" href="/dashboard/reels">
-                    Reels
-                </Link>
-            </nav>
-
-            <main className="body-container">{children}</main>
-        </>
+        <div className="body-container-wrapper">
+            <Link className="nav-link" href="/dashboard">
+                Dashboard
+            </Link>
+            <br />
+            <Link className="nav-link" href="/dashboard/articles">
+                Edit Articles
+            </Link>
+            <br />
+            <Link className="nav-link" href="/dashboard/reels">
+                Edit Reels
+            </Link>
+            <main>{children}</main>
+        </div>
     );
 }

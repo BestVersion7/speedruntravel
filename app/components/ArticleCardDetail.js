@@ -2,8 +2,8 @@
 
 import ReactMarkdown from "react-markdown";
 import Link from "next/link";
-// import SubscriberButton from "../components/SubscriberButton";
 import { formatDate2 } from "../utils/formatDate";
+import SubscriberButton from "./SubscriberButton";
 
 const ArticleCardDetail = (props) => {
     return (
@@ -17,9 +17,9 @@ const ArticleCardDetail = (props) => {
                 <b>
                     Thank you for reading this article. Let me know your
                     thoughts! Get notified when a new article comes out!{" "}
-                    {/* <SubscriberButton />{" "} */}
+                    <SubscriberButton /> and{" "}
                     <Link href="/support" className="nav-link">
-                        Support My Blog
+                        Donate
                     </Link>
                 </b>
             </p>
