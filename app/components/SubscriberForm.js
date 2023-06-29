@@ -4,7 +4,7 @@ import Button from "@mui/material/Button";
 import { useRef } from "react";
 import TextField from "@mui/material/TextField";
 import Link from "next/link";
-import { createSubscriber } from "../utils/apiCalls";
+import { createSubscriber } from "../utils/apiCallsServerExperimental";
 
 const SubscriberForm = (props) => {
     const emailRef = useRef();

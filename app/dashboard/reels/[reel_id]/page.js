@@ -1,4 +1,4 @@
-import { fetchReelById } from "@/app/utils/apiCalls";
+import { fetchReelById } from "@/app/utils/apiCallsServerExperimental";
 import ReelForm from "@/app/components/ReelForm";
 
 const DashboardReelPage = async ({ params }) => {

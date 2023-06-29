@@ -1,4 +1,4 @@
-import { fetchArticleById } from "@/app/utils/apiCalls";
+import { fetchArticleById } from "@/app/utils/apiCallsServerExperimental";
 import ArticleCardDetail from "@/app/components/ArticleCardDetail";
 import TogglePreview from "@/app/components/TogglePreview";
 import ArticleForm from "@/app/components/ArticleForm";

@@ -1,4 +1,4 @@
-import { fetchAllArticles, fetchAllReels } from "../utils/apiCalls";
+import { fetchAllArticles, fetchAllReels } from "../utils/apiCallsServerExperimental";
 import Link from "next/link";
 import { transformTitle } from "../utils/transformTitle";
 
