@@ -6,8 +6,10 @@ import Navigation from "./components/Navigation";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-    title: "Dashboard",
-    description: "Edit Blog and Reels",
+    title: "SpeedRunTravel",
+    description: "Staying in a city for 24 hours or less. Let me help you decide whether to visit or skip.",
+    keywords:
+        "traveling, 24 hours, city, raleigh, boston, dc, virginia, amsterdam, london, salzburg",
 };
 
 export default function RootLayout({ children }) {

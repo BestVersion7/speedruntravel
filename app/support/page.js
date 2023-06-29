@@ -1,5 +1,10 @@
 import DonateForm from "../components/DonateForm";
 
+export const metadata = {
+    title: "Support",
+    description: "Support my travel adventure blog."
+};
+
 export default function SupportPage() {
     return (
         <div>

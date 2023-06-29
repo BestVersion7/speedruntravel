@@ -6,6 +6,10 @@ export const generateStaticParams = () => {
     return [{ reel_id: "92" }];
 };
 
+export const metadata = {
+    title: "Reels",
+};
+
 export default async function ({ params }) {
     const reels = await fetchAllPublicReels();
 

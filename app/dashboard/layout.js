@@ -1,5 +1,9 @@
 import Link from "next/link";
 
+export const metadata = {
+    title: 'Dashboard',
+}
+
 export default function RootLayout({ children }) {
     return (
         <div className="body-container-wrapper">

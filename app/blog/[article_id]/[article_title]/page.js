@@ -18,6 +18,15 @@ export const generateStaticParams = () => {
     ];
 };
 
+export async function generateMetadata({ params }) {
+    const article = await fetchPublicArticleById(params.article_id);
+    return {
+        title: article.article_title,
+        description: article.article_title,
+        keywords: `Travelling to ${article.article_title}`,
+    };
+}
+
 const ArticleTitlePage = async ({ params }) => {
     const article = await fetchPublicArticleById(params.article_id);
     const fiveArticles = await fetchFivePublicArticles();

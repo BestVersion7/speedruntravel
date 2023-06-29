@@ -1,6 +1,11 @@
 import Googlemap from "../components/Googlemap";
 import ContactForm from "../components/ContactForm";
 
+export const metadata = {
+    title: "Contact",
+    description: "Contact me about travel.",
+};
+
 export default function ContactPage() {
     return (
         <>

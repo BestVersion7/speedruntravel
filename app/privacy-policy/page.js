@@ -1,3 +1,8 @@
+export const metadata = {
+    title: "Privacy Policy",
+    description: "Privacy Policy for Speedruntravel",
+};
+
 const PrivacyPolicy = () => {
     return (
         <>

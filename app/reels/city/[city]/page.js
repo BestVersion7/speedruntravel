@@ -6,6 +6,14 @@ export const generateStaticParams = () => {
     return [{ city: "tampa" }];
 };
 
+export async function generateMetadata({ params }) {
+    return {
+        title: params.city.charAt(0).toUpperCase() + params.city.slice(1),
+        description: params.city.charAt(0).toUpperCase() + params.city.slice(1),
+        keywords: `Travelling to ${params.city.charAt(0).toUpperCase() + params.city.slice(1)}`,
+    };
+}
+
 export default async function CityPageFilter({ params }) {
     const reels = await fetchAllPublicReelsByCity(params.city);
 
