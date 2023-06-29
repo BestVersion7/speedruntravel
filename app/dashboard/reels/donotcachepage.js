@@ -8,21 +8,20 @@ const ReelPage = async () => {
         <>
             <h1>Legend:</h1>
             <div className="dashboard-article-create-top-section">
-                <Link passHref legacyBehavior href={`/dashboard/reels/create`}>
-                    <div className="dashboard-article-create-section">
-                        <h2>Create (+)</h2>
-                    </div>
-                </Link>
+                <div className="dashboard-article-create-section">
+                    <Link className="nav-link" href={`/dashboard/reels/create`}>
+                        Create (+)
+                    </Link>
+                </div>
                 <div className="dashboard-article-create-section-public">
-                    <h2>Public</h2>
+                    <span className="nav-link">Public</span>
                 </div>
                 <div className="dashboard-article-create-section-private">
-                    <h2>Private</h2>
+                    <span className="nav-link">Private</span>
                 </div>
             </div>
             <div>
                 <h2>Cities:</h2>
-                {/* <CityFilter pathname="/master/reels" /> */}
             </div>
             <div>
                 <ReelCardMapped url_base="dashboard/reels" reels={reels} />

@@ -37,7 +37,7 @@ const ReelForm = (props) => {
         };
         try {
             console.log(data3);
-            router.push("/dashboard/reels");
+            router.push("/dashboard");
         } catch (err) {
             return alert(err);
         }
@@ -54,7 +54,7 @@ const ReelForm = (props) => {
         };
         try {
             console.log(data3);
-            router.push("/dashboard/reels");
+            router.push("/dashboard");
         } catch (err) {
             return alert(err);
         }
@@ -70,7 +70,7 @@ const ReelForm = (props) => {
     };
 
     const handleCancel = () => {
-        router.push("/dashboard/reels");
+        router.push("/dashboard");
     };
 
     return (

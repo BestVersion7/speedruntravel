@@ -95,6 +95,20 @@ body {
     }
 }
 
+// for dashboard
+.nav-link-public-true {
+    color: black;
+    &:hover {
+        color: lightsteelblue;
+    }
+}
+.nav-link-public-false {
+    color: red;
+    &:hover {
+        color: lightsteelblue;
+    }
+}
+
 footer {
     background-image: $gradientColor;
     text-align: center;
@@ -152,6 +166,13 @@ article {
 
 //DASHBOARD
 
+.dashboard-main {
+    @include mQ(50em) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
 .dashboard-article-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -167,6 +188,9 @@ article {
 }
 
 .dashboard-article-create-top-section {
+    display: grid;
+    grid-gap: 1em;
+    grid-template-columns: repeat(auto-fill, minmax(13em, 1fr));
     .dashboard-article-create-section {
         border: 10px solid green;
     }
@@ -174,22 +198,22 @@ article {
         border: 10px solid black;
     }
     .dashboard-article-create-section-private {
-        border: 10px dashed red;
+        border: 10px solid red;
     }
     .dashboard-article-create-section,
     .dashboard-article-create-section-public,
     .dashboard-article-create-section-private {
-        display: inline-block;
-        margin: 1em 1em 0 0;
-        height: 10em;
-        width: 10em;
+        // display: inline-block;
+        // margin: 1em 1em 0 0;
+        height: 11em;
+        width: 11em;
         background-color: white;
-        h2 {
+        .nav-link {
             position: relative;
-            top: 35%;
-            -webkit-transform: translateY(-50%);
-            -ms-transform: translateY(-50%);
-            transform: translateY(-50%);
+            top: 15%;
+            // -webkit-transform: translateY(-50%);
+            // -ms-transform: translateY(-50%);
+            // transform: translateY(-50%);
             text-align: center;
         }
     }
@@ -381,7 +405,7 @@ article {
     }
 }
 
-.subscriber-modal {
+.modal-subscribe {
     width: 16em;
     margin: 1em;
     height: 35em;
@@ -391,4 +415,8 @@ article {
     @include mQ(50em) {
         width: 30em;
     }
+}
+
+.modal-dashboardCreate{
+    
 }

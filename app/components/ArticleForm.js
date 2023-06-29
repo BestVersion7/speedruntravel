@@ -30,7 +30,7 @@ const ArticleForm = (props) => {
         };
         try {
             console.log(data3);
-            router.push("/dashboard/articles");
+            // router.push("/dashboard");
         } catch (err) {
             return alert(err);
         }
@@ -48,7 +48,7 @@ const ArticleForm = (props) => {
             setLoading(!loading);
             console.log(data3);
             setOpenModal(false);
-            router.push("/dashboard/articles");
+            router.push("/dashboard");
         } catch (err) {
             return alert(err);
         }
@@ -63,7 +63,7 @@ const ArticleForm = (props) => {
     };
 
     const handleCancel = () => {
-        router.push("/dashboard/articles");
+        router.push("/dashboard");
     };
 
     return (
@@ -91,11 +91,11 @@ const ArticleForm = (props) => {
             <br />
             <p>Article Body</p>
             <textarea
-                style={{ width: "100%", height: "50em" }}
+                style={{ width: "100%", minHeight: "20em" }}
                 defaultValue={props.article_post}
                 ref={postRef}
             />
-            <br />
+            <br /> <br />
             <TextField
                 fullWidth
                 multiline

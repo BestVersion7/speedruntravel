@@ -4,7 +4,7 @@ import SubscriberButton from "./SubscriberButton";
 import Link from "next/link";
 
 const Footer = () => {
-    console.log("footer memo is running");
+    // console.log("footer memo is running");
     return (
         <footer>
             Subscribe & Follow me on Instagram <br />

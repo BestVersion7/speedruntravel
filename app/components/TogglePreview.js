@@ -1,29 +1,27 @@
 "use client";
 import { useState } from "react";
 import Button from "@mui/material/Button";
+import SimpleDialog from "./SimpleDialog";
 
 export default function TogglePreview() {
-    const [toggle, setToggle] = useState(false);
+    const [openModal, setOpenModal] = useState(false);
 
-    const handleTogglePreview = () => {
-        setToggle((value) => !value);
-        if (!toggle) {
-            document.getElementsByClassName(
-                "dashboard-article-container"
-            )[0].style.gridTemplateColumns = "1fr";
-        } else {
-            document.getElementsByClassName(
-                "dashboard-article-container"
-            )[0].style.gridTemplateColumns = "1fr 1fr";
-        }
-    };
     return (
-        <Button
-            onClick={handleTogglePreview}
-            variant="contained"
-            color="secondary"
-        >
-            Toggle Preview
-        </Button>
+        <>
+            <Button
+                onClick={() => setOpenModal(true)}
+                variant="contained"
+                color="secondary"
+            >
+                Toggle Preview
+            </Button>
+            <SimpleDialog
+                cName="em"
+                openModal={openModal}
+                setOpenModal={setOpenModal}
+            >
+                Hello there
+            </SimpleDialog>
+        </>
     );
 }

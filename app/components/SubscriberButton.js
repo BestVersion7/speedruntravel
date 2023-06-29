@@ -19,7 +19,7 @@ const SubscriberButton = (props) => {
             >
                 Subscribe
             </Button>
-            <SimpleDialog openModal={openModal} setOpenModal={setOpenModal}>
+            <SimpleDialog cName="subscribe" openModal={openModal} setOpenModal={setOpenModal}>
                 {successRedirect ? (
                     <SubscriberFormSuccess setOpenModal={setOpenModal} />
                 ) : (

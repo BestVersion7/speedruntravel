@@ -11,7 +11,7 @@ const SimpleDialog = (props) => {
             onClose={() => props.setOpenModal(false)}
             open={props.openModal}
         >
-            <Box className="subscriber-modal">
+            <Box className={`modal-${props.cName}`}>
                 <Button
                     sx={{
                         position: "absolute",

@@ -1,13 +1,13 @@
 import Link from "next/link";
 
 export const metadata = {
-    title: 'Dashboard',
-}
+    title: "Dashboard",
+};
 
 export default function RootLayout({ children }) {
     return (
         <div className="body-container-wrapper">
-            <Link className="nav-link" href="/dashboard">
+            {/* <Link className="nav-link" href="/dashboard">
                 Dashboard
             </Link>
             <br />
@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
             <br />
             <Link className="nav-link" href="/dashboard/reels">
                 Edit Reels
-            </Link>
+            </Link> */}
             <main>{children}</main>
         </div>
     );

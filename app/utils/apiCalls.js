@@ -5,9 +5,7 @@ const options = {
     headers: {
         authorization: process.env.NEXT_PUBLIC_API_KEY,
     },
-    next: {
-        revalidate: 3600,
-    },
+    cache: 'no-cache'
 };
 
 const publicOptions = {
@@ -159,16 +157,6 @@ export const fetchArticleById = async (article_id) => {
 export const fetchAllReels = async () => {
     try {
         const results = await fetch(`${url}/reel`, options);
-        const data = await results.json();
-        return data;
-    } catch (err) {
-        console.log(err);
-    }
-};
-
-export const fetchReelsByCity = async (city) => {
-    try {
-        const results = await fetch(`${url}/reel?city=${city}`, options);
         const data = await results.json();
         return data;
     } catch (err) {
