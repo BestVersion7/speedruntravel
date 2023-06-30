@@ -9,28 +9,28 @@ import { transformTitle } from "../utils/transformTitle";
 
 export default function ArticleAi(props) {
     return (
-        <div className="article-ai-card">
+        <div className="article-item-ct">
             {props.articles.map((item) => (
-                <div className="article-item" key={item.article_id}>
-                    <Link
-                        href={`/blog/${item.article_id}/${transformTitle(
-                            item.article_title
-                        )}`}
-                    >
-                        <Card sx={{ display: "flex" }}>
-                            <CardMedia
-                                component="img"
-                                className="card-media"
-                                image={item.article_image_small}
-                                alt={item.article_title}
-                            />
-                            <CardContent>
-                                {item.article_title} <br />
-                                <i>{formatDate(item.article_date)}</i>
-                            </CardContent>
-                        </Card>
-                    </Link>
-                </div>
+                <Link
+                    href={`/blog/${item.article_id}/${transformTitle(
+                        item.article_title
+                    )}`}
+                    className="article-item"
+                    key={item.article_id}
+                >
+                    <Card className="card-ai">
+                        <CardMedia
+                            component="img"
+                            className="card-media"
+                            image={item.article_image_small}
+                            alt={item.article_title}
+                        />
+                        <CardContent>
+                            {item.article_title} <br />
+                            <i>{formatDate(item.article_date)}</i>
+                        </CardContent>
+                    </Card>
+                </Link>
             ))}
         </div>
     );

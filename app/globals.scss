@@ -57,7 +57,7 @@ body {
             .nav-link {
                 text-decoration: none;
                 color: white;
-                font-size: 2.5em;
+                font-size: 2.4em;
                 padding: 0 1em;
                 &:hover {
                     color: black;
@@ -236,7 +236,7 @@ article {
     }
 }
 
-.modal-box {
+.modal-box-small {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -252,6 +252,19 @@ article {
     @include mQ(50em) {
         width: 28em;
     }
+}
+
+.modal-box-large {
+    margin: auto;
+    margin-top: 1em;
+    width: 90vw;
+    background-color: white;
+    border: 2px solid #000;
+    box-shadow: 24;
+    overflow: auto;
+    max-height: 90vh;
+    max-width: 100em;
+    padding: 1em;
 }
 
 // this modal is for the article/:slug
@@ -320,11 +333,12 @@ article {
 }
 
 .article-page-divider {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-gap: 2em;
     @include mQ(60em) {
-        display: grid;
-        grid-template-columns: auto auto;
-        // grid-template-columns: 2fr 1fr;
-        grid-gap: 2em;
+        grid-template-columns: auto minmax(5em, 20em);
+        // grid-template-columns: auto auto;
     }
 
     .article-ai-body {
@@ -338,19 +352,23 @@ article {
             top: 4em;
         }
 
-        .article-ai-card {
+        .article-item-ct {
             display: grid;
             grid-gap: 1em;
-            grid-template-rows: repeat(auto-fill, minmax(1em, 1fr));
-            .card-media {
-                width: 7em;
-                @include mQ(60em) {
-                    width: 5em;
-                }
-            }
+            // grid-template-rows: repeat(auto-fill, minmax(1em, 1fr));
             .article-item {
                 &:hover {
                     opacity: 0.8;
+                }
+
+                .card-ai {
+                    display: flex;
+                    .card-media {
+                        width: 6em;
+                        // @include mQ(60em) {
+                        //     width: 5em;
+                        // }
+                    }
                 }
             }
         }
@@ -415,8 +433,4 @@ article {
     @include mQ(50em) {
         width: 30em;
     }
-}
-
-.modal-dashboardCreate{
-    
 }

@@ -75,7 +75,7 @@ const ContactForm = () => {
                     Submit
                 </Button>
             </form>
-            <BasicModal openModal={openModal} setOpenModal={setOpenModal}>
+            <BasicModal size="small" openModal={openModal} setOpenModal={setOpenModal}>
                 <p>
                     Your message has been delivered! Please expect a response
                     within 3-5 business days. Have a wonderful day!

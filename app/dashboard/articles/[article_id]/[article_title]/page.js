@@ -1,7 +1,7 @@
 import { fetchArticleById } from "@/app/utils/apiCallsServerExperimental";
 import ArticleCardDetail from "@/app/components/ArticleCardDetail";
-import TogglePreview from "@/app/components/TogglePreview";
 import ArticleForm from "@/app/components/ArticleForm";
+import ArticleModal from "./ArticleModal";
 
 export async function generateStaticParams() {
     return [
@@ -24,24 +24,14 @@ export default async function ArticleIdPage({ params }) {
                 Update Article Here (updates will take 1 hour to show on home
                 page)
             </h2>
-            <TogglePreview />
-            <div className="dashboard-article-container">
-                <div>
-                    <ArticleForm
-                        crud="update"
-                        article_date={article.article_date}
-                        article_title={article.article_title}
-                        article_post={article.article_post}
-                        article_image_small={article.article_image_small}
-                        article_public={article.article_public}
-                    />
-                </div>
-                <ArticleCardDetail
-                    article_title={article.article_title}
-                    article_post={article.article_post}
-                    article_date={article.article_date}
-                />
-            </div>
+            <ArticleModal
+                article_public={article.article_public}
+                article_id={article.article_id}
+                article_image_small={article.article_image_small}
+                article_title={article.article_title}
+                article_date={article.article_date}
+                article_post={article.article_post}
+            />
         </>
     );
 }

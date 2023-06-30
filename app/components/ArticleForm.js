@@ -3,7 +3,7 @@
 import Button from "@mui/material/Button";
 import { useRouter } from "next/navigation";
 import TextField from "@mui/material/TextField";
-import TextAreaAutosize from "@mui/material/TextareaAutosize";
+import TextareaAutosize from "@mui/material/TextareaAutosize";
 import Switch from "@mui/material/Switch";
 import BasicModal from "./BasicModal";
 import { useState, useRef } from "react";
@@ -13,54 +13,6 @@ const ArticleForm = (props) => {
     const router = useRouter();
     const [openModal, setOpenModal] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [publicRef, setPublicRef] = useState(props.article_public);
-
-    const dateRef = useRef();
-    const titleRef = useRef();
-    const postRef = useRef();
-    const imageSmallRef = useRef();
-
-    const handleCreate = async () => {
-        const data3 = {
-            article_date: dateRef.current.value,
-            article_title: titleRef.current.value,
-            article_post: postRef.current.value,
-            article_image_small: imageSmallRef.current.value,
-            article_public: publicRef,
-        };
-        try {
-            console.log(data3);
-            // router.push("/dashboard");
-        } catch (err) {
-            return alert(err);
-        }
-    };
-
-    const handleUpdate = async () => {
-        const data3 = {
-            article_date: dateRef.current.value,
-            article_title: titleRef.current.value,
-            article_post: postRef.current.value,
-            article_image_small: imageSmallRef.current.value,
-            article_public: publicRef,
-        };
-        try {
-            setLoading(!loading);
-            console.log(data3);
-            setOpenModal(false);
-            router.push("/dashboard");
-        } catch (err) {
-            return alert(err);
-        }
-    };
-
-    const handleReset = () => {
-        dateRef.current.value = props.article_date;
-        titleRef.current.value = props.article_title;
-        postRef.current.value = props.article_post;
-        imageSmallRef.current.value = props.article_image_small;
-        setPublicRef(props.article_public);
-    };
 
     const handleCancel = () => {
         router.push("/dashboard");
@@ -68,86 +20,68 @@ const ArticleForm = (props) => {
 
     return (
         <form onSubmit={(e) => e.preventDefault()}>
+            <Button
+                color="secondary"
+                variant="contained"
+                onClick={() => props.setOpenModal(true)}
+            >
+                Preview
+            </Button>{" "}
+            <Button variant="contained" onClick={handleCancel}>
+                Close
+            </Button>
+            <br />
+            <br />
             <p>
                 <Switch
-                    checked={publicRef}
-                    onChange={() => setPublicRef((v) => !v)}
+                    checked={props.article_public}
+                    onChange={() => props.setArticlePublic((v) => !v)}
                 />
-                {publicRef ? <span>Public</span> : <span>Private</span>}
+                {props.article_public ? (
+                    <span>Public</span>
+                ) : (
+                    <span>Private</span>
+                )}
             </p>
             <TextField
                 label="Title"
                 fullWidth
-                defaultValue={props.article_title}
-                inputRef={titleRef}
+                value={props.article_title}
+                onChange={(e) => props.setArticleTitle(e.target.value)}
             />
             <br /> <br />
             <TextField
                 label="Date"
                 fullWidth
-                defaultValue={props.article_date}
-                inputRef={dateRef}
+                value={props.article_date}
+                onChange={(e) => props.setArticleDate(e.target.value)}
             />
             <br />
             <p>Article Body</p>
-            <textarea
-                style={{ width: "100%", minHeight: "20em" }}
-                defaultValue={props.article_post}
-                ref={postRef}
+            <TextareaAutosize
+                minRows={5}
+                style={{ width: "100%", wordBreak: "break-all" }}
+                value={props.article_post}
+                onChange={(e) => props.setArticlePost(e.target.value)}
             />
             <br /> <br />
             <TextField
                 fullWidth
                 multiline
                 label="Cover Image"
-                rows={5}
-                defaultValue={props.article_image_small}
-                inputRef={imageSmallRef}
+                rows={3}
+                value={props.article_image_small}
+                onChange={(e) => props.setArticleImageSmall(e.target.value)}
             />
             <br />
             <br />
-            <Image
+            {/* <Image
                 width={350}
                 height={350}
                 src={props.article_image_small}
                 alt="picture"
-            />
+            /> */}
             <br />
-            {props.crud === "create" && (
-                <Button variant="contained" onClick={handleCreate}>
-                    Create
-                </Button>
-            )}
-            {props.crud === "update" && (
-                <>
-                    <Button
-                        onClick={() => setOpenModal(true)}
-                        variant="contained"
-                    >
-                        Update
-                    </Button>
-                    <BasicModal
-                        openModal={openModal}
-                        setOpenModal={setOpenModal}
-                    >
-                        <p>Are you sure you want to update?</p>
-                        <Button
-                            disabled={loading}
-                            variant="contained"
-                            onClick={handleUpdate}
-                        >
-                            Update
-                        </Button>
-                    </BasicModal>
-
-                    <Button variant="contained" onClick={handleReset}>
-                        Reset
-                    </Button>
-                </>
-            )}
-            <Button variant="contained" onClick={handleCancel}>
-                Close
-            </Button>
         </form>
     );
 };
