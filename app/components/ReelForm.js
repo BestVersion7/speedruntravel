@@ -18,55 +18,48 @@ const ReelForm = (props) => {
 
     const [publicRef, setPublicRef] = useState(props.reel_public);
     const [videoRef, setVideoRef] = useState(props.reel_video);
-    const [videoThumbnailRef, setVideoThumbnailRef] = useState(
-        props.reel_video_thumbnail
-    );
+    const [loading, setLoading] = useState(false);
 
+    const videoThumbnailRef = useRef();
     const dateRef = useRef();
     const imageRef = useRef();
     const categoryRef = useRef();
 
     const handleCreate = async () => {
+        setLoading(true);
         const data3 = {
             reel_date: dateRef.current.value,
             reel_category: categoryRef.current.value,
             reel_image: imageRef.current.value,
             reel_public: publicRef,
             reel_video: videoRef,
-            reel_video_thumbnail: videoThumbnailRef,
+            reel_video_thumbnail: videoThumbnailRef.current?.value ?? "",
         };
         try {
             console.log(data3);
-            router.push("/dashboard");
+            setTimeout(() => setLoading(false), 2000);
         } catch (err) {
-            return alert(err);
+            alert(err);
         }
     };
 
     const handleUpdate = () => {
+        setLoading(true);
         const data3 = {
             reel_date: dateRef.current.value,
             reel_category: categoryRef.current.value,
             reel_image: imageRef.current.value,
             reel_public: publicRef,
             reel_video: videoRef,
-            reel_video_thumbnail: videoThumbnailRef,
+            reel_video_thumbnail: videoThumbnailRef.current?.value ?? "",
         };
         try {
             console.log(data3);
-            router.push("/dashboard");
+
+            setTimeout(() => setLoading(false), 2000);
         } catch (err) {
             return alert(err);
         }
-    };
-
-    const handleReset = () => {
-        dateRef.current.value = props.reel_date;
-        categoryRef.current.value = props.reel_category;
-        imageRef.current.value = props.reel_image;
-        setPublicRef(props.reel_public);
-        setVideoRef(props.reel_video);
-        setVideoThumbnailRef(props.reel_video_thumbnail);
     };
 
     const handleCancel = () => {
@@ -75,11 +68,46 @@ const ReelForm = (props) => {
 
     return (
         <form onSubmit={(e) => e.preventDefault()}>
+            {props.crud === "create" && (
+                <Button
+                    disabled={loading}
+                    variant="contained"
+                    onClick={handleCreate}
+                >
+                    Create
+                </Button>
+            )}
+            {props.crud === "update" && (
+                <>
+                    <Button
+                        onClick={() => setOpenModal(true)}
+                        variant="contained"
+                    >
+                        Update
+                    </Button>
+                    <BasicModal
+                        openModal={openModal}
+                        setOpenModal={setOpenModal}
+                        size="small"
+                    >
+                        <p>Are you sure you want to update?</p>
+                        <Button
+                            disabled={loading}
+                            variant="contained"
+                            onClick={handleUpdate}
+                        >
+                            Update
+                        </Button>
+                    </BasicModal>
+                </>
+            )}{" "}
+            <Button variant="contained" color="primary" onClick={handleCancel}>
+                Close
+            </Button>
             <p>
                 <Switch
                     checked={publicRef}
                     onChange={() => setPublicRef((v) => !v)}
-                    // onChange={() => props.setReelPublic(!props.reel_public)}
                     inputProps={{ "aria-label": "controlled" }}
                 />
                 {publicRef ? <span>Public</span> : <span>Private</span>}
@@ -127,8 +155,7 @@ const ReelForm = (props) => {
                         multiline
                         fullWidth
                         minRows={3}
-                        value={videoThumbnailRef}
-                        onChange={(e) => setVideoThumbnailRef(e.target.value)}
+                        inputRef={videoThumbnailRef}
                     />
                     <br />
                     <br />
@@ -149,43 +176,11 @@ const ReelForm = (props) => {
                     height="400"
                     style={{ objectFit: "cover" }}
                     // src={props.reel_image}
-                    src={props.reel_image || imageRef.current.value}
+                    src={props.reel_image}
                     alt={props.reel_category}
                 />
             )}
             <br />
-            {props.crud === "create" && (
-                <Button variant="contained" onClick={handleCreate}>
-                    Create
-                </Button>
-            )}
-            {props.crud === "update" && (
-                <>
-                    <Button
-                        onClick={() => setOpenModal(true)}
-                        variant="contained"
-                    >
-                        Update
-                    </Button>
-                    <BasicModal
-                        openModal={openModal}
-                        setOpenModal={setOpenModal}
-                        btnName="Update"
-                    >
-                        <p>Are you sure you want to update?</p>
-                        <Button variant="contained" onClick={handleUpdate}>
-                            Update
-                        </Button>
-                    </BasicModal>
-
-                    <Button variant="contained" onClick={handleReset}>
-                        Reset
-                    </Button>
-                </>
-            )}
-            <Button variant="contained" color="primary" onClick={handleCancel}>
-                Close
-            </Button>
         </form>
     );
 };

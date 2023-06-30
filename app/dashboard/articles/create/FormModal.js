@@ -53,6 +53,7 @@ const FormModal = () => {
                         color="secondary"
                         variant="contained"
                         onClick={handleCreateArticle}
+                        disabled={loading}
                     >
                         Create
                     </Button>{" "}

@@ -1,6 +1,15 @@
 import { fetchReelById } from "@/app/utils/apiCallsServerExperimental";
 import ReelForm from "@/app/components/ReelForm";
 
+export const generateStaticParams = () => {
+    return [
+        {
+            reel_id: "91",
+            reel_id: "90",
+        },
+    ];
+};
+
 const DashboardReelPage = async ({ params }) => {
     const reel = await fetchReelById(params.reel_id);
 
