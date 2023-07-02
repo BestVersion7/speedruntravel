@@ -55,8 +55,8 @@ const ReelForm = (props) => {
         };
         try {
             console.log(data3);
-            router.push('/dashboard')
-            // setTimeout(() => setLoading(false), 2000);
+            // router.push('/dashboard')
+            setTimeout(() => setLoading(false), 2000);
         } catch (err) {
             return alert(err);
         }
