@@ -22,6 +22,8 @@ body {
     padding: 0;
     max-width: 110em;
     background-color: rgb(220, 220, 220);
+    display: grid;
+    grid-template-rows: 4em auto;
     font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
         "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
     .body-container {

@@ -8,6 +8,7 @@ import Image from "next/image";
 import ArticleAi from "@/app/components/ArticleAi";
 import CommentForm from "@/app/components/CommentForm";
 import Comment from "@/app/components/Comment";
+import NotFound from "@/app/not-found";
 
 export const generateStaticParams = () => {
     return [
@@ -21,14 +22,18 @@ export const generateStaticParams = () => {
 export async function generateMetadata({ params }) {
     const article = await fetchPublicArticleById(params.article_id);
     return {
-        title: article.article_title,
-        description: article.article_title,
-        keywords: `Travelling to ${article.article_title}`,
+        title: article?.article_title ?? "Not found",
+        description: article?.article_title ?? "Not found",
+        keywords: `Travelling to ${article?.article_title ?? "Not found"}`,
     };
 }
 
 const ArticleTitlePage = async ({ params }) => {
     const article = await fetchPublicArticleById(params.article_id);
+
+    if (article == null) {
+        return <NotFound />;
+    }
     const fiveArticles = await fetchFivePublicArticles();
     const comments = await fetchCommentsByArticleId(params.article_id);
 

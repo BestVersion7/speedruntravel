@@ -17,7 +17,14 @@ export default async function sitemap() {
         lastModified: "2023-07-02T00:59:27.320Z",
     }));
 
-    const routes = ["/", "/about", "/contact", "/support"].map((route) => ({
+    const routes = [
+        "/",
+        "/blog",
+        "/reels",
+        "/contact",
+        "/support",
+        "/privacy-policy",
+    ].map((route) => ({
         url: `${siteUrl}${route}`,
         lastModified: "2023-07-02T00:59:27.320Z",
     }));

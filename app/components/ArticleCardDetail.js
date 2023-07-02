@@ -17,10 +17,7 @@ const ArticleCardDetail = (props) => {
                 <b>
                     Thank you for reading this article. Let me know your
                     thoughts! Get notified when a new article comes out!{" "}
-                    <SubscriberButton /> and{" "}
-                    <Link href="/support" className="nav-link">
-                        Donate
-                    </Link>
+                    <SubscriberButton /> and <Link href="/support">Donate</Link>
                 </b>
             </p>
         </article>
