@@ -10,7 +10,7 @@ export const generateStaticParams = () => {
     ];
 };
 
-const DashboardReelPage = async ({ params }) => {
+export default async function DashboardReelPage({ params }) {
     const reel = await fetchReelById(params.reel_id);
 
     return (
@@ -31,6 +31,4 @@ const DashboardReelPage = async ({ params }) => {
             </div>
         </>
     );
-};
-
-export default DashboardReelPage;
+}

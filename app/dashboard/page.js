@@ -1,4 +1,7 @@
-import { fetchAllArticles, fetchAllReels } from "../utils/apiCallsServerExperimental";
+import {
+    fetchAllArticles,
+    fetchAllReels,
+} from "../utils/apiCallsServerExperimental";
 import Link from "next/link";
 import { transformTitle } from "../utils/transformTitle";
 
@@ -19,10 +22,7 @@ export default async function Dashboard() {
                     </Link>
                 </div>
                 <div className="dashboard-article-create-section">
-                    <Link
-                        className="nav-link"
-                        href={`/dashboard/reels/create`}
-                    >
+                    <Link className="nav-link" href={`/dashboard/reels/create`}>
                         New Reel (+)
                     </Link>
                 </div>
@@ -54,8 +54,10 @@ export default async function Dashboard() {
 
                             {item.comment.length > 0 && (
                                 <ol>
-                                    {item.comment.map((item) => (
-                                        <li>{item.comment_body}</li>
+                                    {item.comment.map((comment, index) => (
+                                        <li key={index}>
+                                            {comment.comment_body}
+                                        </li>
                                     ))}
                                 </ol>
                             )}
