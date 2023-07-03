@@ -1,7 +1,6 @@
 const url = "https://www.hunterkf.com/api";
 const publicUrl = "https://www.hunterkf.com/api/public";
 
-
 const publicOptions = {
     // cache: 'no-store',
     next: {
@@ -166,6 +165,45 @@ export const fetchCommentsByArticleId = async (article_id) => {
 export const createComment = async (data2) => {
     try {
         const results = await fetch(`${publicUrl}/comment`, {
+            method: "POST",
+            body: JSON.stringify(data2),
+        });
+        const data = await results.json();
+        return data;
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+export const getSurveyCountByChoice = async (choice) => {
+    try {
+        const results = await fetch(
+            `${url}/survey1/count?survey_choice=${choice}`,
+            publicOptionsNoCache
+        );
+        const data = await results.json();
+        return data;
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+export const getSurveyCount = async () => {
+    try {
+        const results = await fetch(
+            `${url}/survey1/count`,
+            publicOptionsNoCache
+        );
+        const data = await results.json();
+        return data;
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+export const postSurveyCity = async (data2) => {
+    try {
+        const results = await fetch(`${url}/survey1`, {
             method: "POST",
             body: JSON.stringify(data2),
         });

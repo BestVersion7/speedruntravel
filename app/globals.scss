@@ -436,3 +436,10 @@ article {
         width: 30em;
     }
 }
+
+.survey-container {
+    display: grid;
+    grid-template-columns: minmax(auto, 50em);
+    justify-items: center;
+    background-color: #e4e0e0;
+}

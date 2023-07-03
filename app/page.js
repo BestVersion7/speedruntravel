@@ -6,6 +6,7 @@ import {
 } from "./utils/apiCalls";
 import ArticleCard from "./components/ArticleCard";
 import SubscriberButton from "./components/SubscriberButton";
+import SurveyCity from "./components/survey/SurveyCity";
 
 export default async function Home() {
     const articles = await fetchTwelvePublicArticles();
@@ -37,6 +38,7 @@ export default async function Home() {
                 ))}
             </div>
             <br />
+            <SurveyCity />
 
             <div>
                 <h2>Pictures and Reels</h2>
