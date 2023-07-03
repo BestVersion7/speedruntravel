@@ -13,6 +13,7 @@ export default async function Home() {
     const reels = await fetchLimitPublicReels();
     return (
         <div>
+            {/* <SurveyCity /> */}
             <h2>
                 Welcome to SpeedRunTravel blog where I write about my experience
                 visiting a new city and staying there for 24 hours or less. Let

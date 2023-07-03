@@ -438,8 +438,11 @@ article {
 }
 
 .survey-container {
-    display: grid;
-    grid-template-columns: minmax(auto, 50em);
-    justify-items: center;
+    max-width: 50em;
+    margin: auto;
     background-color: #e4e0e0;
+    padding: 1em;
+    @include mQ(50em) {
+        padding: 2em
+    }
 }

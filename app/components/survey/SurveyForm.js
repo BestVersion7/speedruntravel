@@ -31,7 +31,7 @@ export default function SurveyForm() {
     };
 
     return (
-        <FormControl>
+        <FormControl style={{ marginLeft: "1em" }}>
             <RadioGroup
                 aria-labelledby="radio-buttons-group-label"
                 name="radio-buttons-group"
@@ -54,7 +54,8 @@ export default function SurveyForm() {
                 onClick={handleSubmit}
             >
                 Submit
-            </Button> <br />
+            </Button>{" "}
+            <br />
         </FormControl>
     );
 }
