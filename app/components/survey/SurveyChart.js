@@ -5,25 +5,40 @@ const Chart = dynamic(() => import("react-apexcharts"), {
     ssr: false,
 });
 const choices = ["Austin, TX", "Miami, FL", "Denver, CO", "Madison, WI"];
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 // loop thru cities
 
-const choiceLength = choices.length;
+export default function SurveyChart() {
+    const [totalCount, setTotalCount] = useState(0);
+    const [seriesData, setSeriesData] = useState([]);
+    const router = useRouter();
 
-const LoopCities = async () => {
-    let data = [];
-    for (let i = 0; i < choiceLength; i++) {
-        const { _count } = await getSurveyCountByChoice(choices[i]);
-        data.push(_count);
-    }
-    return data;
-};
+    const choiceLength = choices.length;
+    const getSurveyDetails = async () => {
+        const surveyCount = await getSurveyCount();
+        setTotalCount(surveyCount._count);
 
-export default async function SurveyChart() {
-    const surveyCount = await getSurveyCount();
-    const totalCount = surveyCount._count;
+        let data = [];
+        for (let i = 0; i < choiceLength; i++) {
+            const { _count } = await getSurveyCountByChoice(choices[i]);
+            data.push(_count);
+        }
+        setSeriesData(data);
+    };
 
-    const seriesData = await LoopCities();
+    const handleRetake = async () => {
+        await fetch("/api/cookie", {
+            method: "PUT",
+            cache: "no-cache",
+        });
+        router.refresh();
+    };
+
+    useEffect(() => {
+        getSurveyDetails();
+    }, []);
 
     // apex chart options
     const options = {
@@ -66,10 +81,16 @@ export default async function SurveyChart() {
                 series={series}
                 type="bar"
                 width="90%"
-                height={350}
+                height={270}
             />
 
-            <p>Total respondents: {totalCount}</p>
+            <p>
+                Total respondents: {totalCount}{" "}
+                <button onClick={handleRetake}>
+                    Retake Survey
+                </button>
+            
+            </p>
         </div>
     );
 }

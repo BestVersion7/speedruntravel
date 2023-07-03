@@ -4,22 +4,20 @@ import { useRef } from "react";
 import { createComment } from "../utils/apiCalls";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import { useRouter } from "next/navigation";
 
 const CommentForm = (props) => {
     const commentRef = useRef();
-    const router = useRouter();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const data = await createComment({
+            await createComment({
                 article_id: props.article_id,
                 comment_body: commentRef.current.value,
                 comment_user_name: "Test",
             });
             commentRef.current.value = "";
-            router.refresh();
+            props.setLoading((v) => !v);
         } catch (err) {
             // console.log(err);
             alert(err);

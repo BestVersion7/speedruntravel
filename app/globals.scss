@@ -439,10 +439,11 @@ article {
 
 .survey-container {
     max-width: 50em;
-    margin: auto;
+    margin: 3em auto;
     background-color: #e4e0e0;
     padding: 1em;
+    height: 400px;
     @include mQ(50em) {
-        padding: 2em
+        // padding: 2em
     }
 }

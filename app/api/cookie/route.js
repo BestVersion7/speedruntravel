@@ -11,3 +11,15 @@ export function POST() {
     });
     return response;
 }
+
+export function PUT() {
+    const response = NextResponse.json("success");
+    response.cookies.set({
+        name: "survey1cookie",
+        value: "true",
+        secure: true,
+        // 15 days
+        maxAge: -1,
+    });
+    return response;
+}

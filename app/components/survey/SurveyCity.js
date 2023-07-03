@@ -2,7 +2,7 @@ import SurveyForm from "./SurveyForm";
 import SurveyChart from "./SurveyChart";
 import { cookies } from "next/headers";
 
-export default async function SurveyCity() {
+export default function SurveyCity() {
     const cookieStore = cookies();
     const survey1cookie = cookieStore.get("survey1cookie");
 
