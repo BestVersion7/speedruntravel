@@ -10,7 +10,7 @@ export const metadata = {
     title: "Reels",
 };
 
-export default async function ({ params }) {
+export default async function ReelIdPage ({ params }) {
     const reels = await fetchAllPublicReels();
 
     // append index to add returns
