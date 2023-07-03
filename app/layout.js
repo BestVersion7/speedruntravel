@@ -2,7 +2,8 @@ import "./globals.scss";
 import { Inter } from "next/font/google";
 import Footer from "./components/Footer";
 import Navigation from "./components/Navigation";
-import CookieConsent from "react-cookie-consent";
+// import CookieConsent from "react-cookie-consent";
+import CookieCons from "./components/CookieCons";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,9 +24,7 @@ export default function RootLayout({ children }) {
                     <div className="body-container-wrapper"> {children}</div>
                 </div>
                 <Footer />
-                <CookieConsent>
-                    This website uses cookies to enhance the user experience.
-                </CookieConsent>
+                <CookieCons />
             </body>
         </html>
     );
