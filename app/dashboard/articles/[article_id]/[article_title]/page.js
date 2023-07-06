@@ -1,6 +1,4 @@
 import { fetchArticleById } from "@/app/utils/apiCallsServerExperimental";
-import ArticleCardDetail from "@/app/components/ArticleCardDetail";
-import ArticleForm from "@/app/components/ArticleForm";
 import ArticleModal from "./ArticleModal";
 
 export async function generateStaticParams() {
