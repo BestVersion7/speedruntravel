@@ -4,12 +4,15 @@ import {
     fetchOffsetReelsByCity,
 } from "@/app/utils/apiCalls";
 import ImageModal from "@/app/components/ImageModal";
+import CityFilter from "@/app/components/CityFilter";
 
 export async function generateMetadata({ params }) {
     return {
         title: params.city.charAt(0).toUpperCase() + params.city.slice(1),
         description: params.city.charAt(0).toUpperCase() + params.city.slice(1),
-        keywords: `Travelling to ${params.city.charAt(0).toUpperCase() + params.city.slice(1)}`,
+        keywords: `Travelling to ${
+            params.city.charAt(0).toUpperCase() + params.city.slice(1)
+        }`,
     };
 }
 
@@ -51,6 +54,10 @@ export default async function CityPageFilterId({ params }) {
                 endIndex={endIndex}
                 paramsId={params.reel_id}
             />
+            <div>
+                <h2>Cities:</h2>
+                <CityFilter city={params.city} />
+            </div>
             <ReelCardMapped
                 url_base={`reels/city/${params.city}`}
                 reels={reels}

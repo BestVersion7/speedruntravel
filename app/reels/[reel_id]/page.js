@@ -1,6 +1,7 @@
 import { fetchAllPublicReels, fetchOffsetReels } from "@/app/utils/apiCalls";
 import ImageModal from "@/app/components/ImageModal";
 import ReelCardMapped from "@/app/components/ReelCardMapped";
+import CityFilter from "@/app/components/CityFilter";
 
 export const generateStaticParams = () => {
     return [{ reel_id: "92" }];
@@ -10,7 +11,7 @@ export const metadata = {
     title: "Reels",
 };
 
-export default async function ReelIdPage ({ params }) {
+export default async function ReelIdPage({ params }) {
     const reels = await fetchAllPublicReels();
 
     // append index to add returns
@@ -40,6 +41,10 @@ export default async function ReelIdPage ({ params }) {
                 endIndex={endIndex}
                 paramsId={params.reel_id}
             />
+            <div>
+                <h2>Cities:</h2>
+                <CityFilter city="" />
+            </div>
             <ReelCardMapped reels={reels} url_base="reels" />
         </div>
     );
