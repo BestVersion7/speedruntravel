@@ -9,8 +9,11 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import BasicModal from "./BasicModal";
 import { useRouter } from "next/navigation";
-import { updateReelById } from "../utils/apiCalls";
 import Image from "next/image";
+import {
+    createReel,
+    updateReelById,
+} from "../utils/apiCallsServerExperimental";
 
 const ReelForm = (props) => {
     const [openModal, setOpenModal] = useState(false);
@@ -25,43 +28,56 @@ const ReelForm = (props) => {
     const imageRef = useRef();
     const categoryRef = useRef();
 
-    const handleCreate = async () => {
-        setLoading(true);
-        const data3 = {
-            reel_date: dateRef.current.value,
-            reel_category: categoryRef.current.value,
-            reel_image: imageRef.current.value,
-            reel_public: publicRef,
-            reel_video: videoRef,
-            reel_video_thumbnail: videoThumbnailRef.current?.value ?? "",
-        };
-        try {
-            console.log(data3);
-            setTimeout(() => setLoading(false), 2000);
-        } catch (err) {
-            alert(err);
-        }
-    };
+    let handleCreate;
+    let handleUpdate;
 
-    const handleUpdate = () => {
-        setLoading(true);
-        const data3 = {
-            reel_date: dateRef.current.value,
-            reel_category: categoryRef.current.value,
-            reel_image: imageRef.current.value,
-            reel_public: publicRef,
-            reel_video: videoRef,
-            reel_video_thumbnail: videoThumbnailRef.current?.value ?? "",
-        };
-        try {
-            console.log(data3);
-            // router.push('/dashboard')
-            setTimeout(() => setLoading(false), 2000);
-        } catch (err) {
-            return alert(err);
-        }
-    };
+    process.env.NODE_ENV === "development"
+        ? (handleCreate = async () => {
+              setLoading(true);
+              const data2 = {
+                  reel_date: dateRef.current.value,
+                  reel_category: categoryRef.current.value,
+                  reel_image: imageRef.current.value,
+                  reel_public: publicRef,
+                  reel_video: videoRef,
+                  reel_video_thumbnail: videoThumbnailRef.current?.value ?? "",
+              };
 
+              try {
+                  const data = await createReel(data2);
+
+                  setLoading(false);
+              } catch (err) {
+                  alert(err);
+              }
+          })
+        : (handleCreate = () => {
+              setLoading(true);
+              setTimeout(() => setLoading(false), 2000);
+          });
+
+    process.env.NODE_ENV === "development"
+        ? (handleUpdate = async () => {
+              setLoading(true);
+              const data2 = {
+                  reel_date: dateRef.current.value,
+                  reel_category: categoryRef.current.value,
+                  reel_image: imageRef.current.value,
+                  reel_public: publicRef,
+                  reel_video: videoRef,
+                  reel_video_thumbnail: videoThumbnailRef.current?.value ?? "",
+              };
+              try {
+                  const data = await updateReelById(props.reel_id, data2);
+                  setLoading(false);
+              } catch (err) {
+                  return alert(err);
+              }
+          })
+        : (handleUpdate = () => {
+              setLoading(true);
+              setTimeout(() => setLoading(false), 2000);
+          });
     const handleCancel = () => {
         router.push("/dashboard");
     };

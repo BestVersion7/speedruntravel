@@ -16,18 +16,23 @@ const FormModal = () => {
     const [openModal, setOpenModal] = useState(false);
     const [loading, setLoading] = useState(false);
 
-    const handleCreateArticle = async () => {
-        const data2 = {
-            articlePublic,
-            articleImageSmall,
-            articleTitle,
-            articleDate,
-            articlePost,
-        };
-        console.log(data2);
-        setTimeout(() => setLoading(false), 2000);
-    };
-
+    let handleCreateArticle;
+    process.env.NODE_ENV === "development"
+        ? (handleCreateArticle = async () => {
+              const data2 = {
+                  article_public: articlePublic,
+                  article_image_small: articleImageSmall,
+                  article_title: articleTitle,
+                  article_date: articleDate,
+                  article_post: articlePost,
+              };
+              setLoading(true);
+              console.log(data2);
+          })
+        : (handleCreateArticle = () => {
+              setLoading(true);
+              setTimeout(() => setLoading(false), 2000);
+          });
     return (
         <>
             <ArticleForm

@@ -68,6 +68,20 @@ export const createArticle = async (data2) => {
     }
 };
 
+export const updateArticleById = async (article_id, data2) => {
+    try {
+        const results = await fetch(`${url}/article?article_id=${article_id}`, {
+            method: "PUT",
+            body: JSON.stringify(data2),
+            headers: { authorization: process.env.API_KEY },
+        });
+        const data = await results.json();
+        return data;
+    } catch (err) {
+        console.log(err);
+    }
+};
+
 export const updateReelById = async (reel_id, data2) => {
     try {
         const results = await fetch(`${url}/reel?reel_id=${reel_id}`, {
