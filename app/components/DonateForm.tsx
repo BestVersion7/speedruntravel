@@ -1,6 +1,6 @@
 "use client";
 import getStripe from "../utils/getStripe";
-import { useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
@@ -8,13 +8,15 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { createPayment } from "../utils/apiCalls";
+import { Stripe } from "@stripe/stripe-js";
 
 const DonateForm = () => {
-    const [amount, setAmount] = useState(0);
-    const customAmountRef = useRef();
-    const [currency, setCurrency] = useState("usd");
+    const [amount, setAmount] = useState<string>("0");
+    // fix
+    const customAmountRef = useRef<null>(null);
+    const [currency, setCurrency] = useState<string>("usd");
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         // Create a Checkout Session.
         try {
@@ -29,7 +31,7 @@ const DonateForm = () => {
             }
 
             // Redirect to Checkout.
-            const stripe = await getStripe();
+            const stripe: Stripe | null = await getStripe();
 
             const { error } = await stripe.redirectToCheckout({
                 sessionId: checkoutSession,
@@ -40,12 +42,12 @@ const DonateForm = () => {
         }
     };
 
-    const handleRadioChange = (e) => {
+    const handleRadioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setAmount(e.target.value);
         customAmountRef.current.value = "";
     };
 
-    const handleInputChange = (e) => {
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setAmount(e.target.value);
     };
 
@@ -73,7 +75,7 @@ const DonateForm = () => {
                     id="amount1"
                     name="amount"
                     value="5"
-                    onClick={handleRadioChange}
+                    onChange={handleRadioChange}
                 />
                 <label htmlFor="amount1">5.00</label>
                 <br />
@@ -82,7 +84,7 @@ const DonateForm = () => {
                     id="amount2"
                     name="amount"
                     value="10"
-                    onClick={handleRadioChange}
+                    onChange={handleRadioChange}
                 />
                 <label htmlFor="amount2">10.00</label>
                 <br />
@@ -91,7 +93,7 @@ const DonateForm = () => {
                     id="amount3"
                     name="amount"
                     value="20"
-                    onClick={handleRadioChange}
+                    onChange={handleRadioChange}
                 />
                 <label htmlFor="amount3">20.00</label>
                 <br />

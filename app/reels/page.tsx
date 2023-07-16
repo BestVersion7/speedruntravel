@@ -1,6 +1,7 @@
 import ReelCardMapped from "../components/ReelCardMapped";
 import { fetchAllPublicReels } from "../utils/apiCalls";
 import CityFilter from "../components/CityFilter";
+import { IReel } from "@/types/types";
 
 export const metadata = {
     title: "Reels",
@@ -9,7 +10,7 @@ export const metadata = {
 };
 
 export default async function ReelsPage() {
-    const reels = await fetchAllPublicReels();
+    const reels:IReel[] = await fetchAllPublicReels();
     return (
         <div>
             <div>

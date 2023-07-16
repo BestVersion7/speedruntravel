@@ -5,8 +5,13 @@ import {
 } from "@/app/utils/apiCalls";
 import ImageModal from "@/app/components/ImageModal";
 import CityFilter from "@/app/components/CityFilter";
+import { IReel } from "@/types/types";
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata({
+    params,
+}: {
+    params: { city: string; reel_id: number };
+}) {
     return {
         title: params.city.charAt(0).toUpperCase() + params.city.slice(1),
         description: params.city.charAt(0).toUpperCase() + params.city.slice(1),
@@ -20,8 +25,12 @@ export const generateStaticParams = () => {
     return [{ city: "tampa", reel_id: "92" }];
 };
 
-export default async function CityPageFilterId({ params }) {
-    const reels = await fetchAllPublicReelsByCity(params.city);
+export default async function CityPageFilterId({
+    params,
+}: {
+    params: { city: string; reel_id: number };
+}) {
+    const reels: IReel[] = await fetchAllPublicReelsByCity(params.city);
     // append an index number to all the reels
     const mappedReels = reels.map((item, index) => {
         return [index, item.reel_id, item.reel_category];

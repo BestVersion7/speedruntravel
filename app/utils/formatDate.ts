@@ -1,4 +1,4 @@
-export const formatDate = (date) => {
+export const formatDate = (date:string) => {
     const longMonths = [
         "January",
         "February",
@@ -27,7 +27,7 @@ export const formatDate = (date) => {
     return returnDate;
 };
 
-export const formatDate2 = (date) => {
+export const formatDate2 = (date:string) => {
     const longMonths = [
         "January",
         "February",

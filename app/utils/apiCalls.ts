@@ -1,3 +1,5 @@
+import { IComment, ISurvey } from "@/types/types";
+
 const url = "https://www.hunterkf.com/api";
 const publicUrl = "https://www.hunterkf.com/api/public";
 
@@ -6,10 +8,6 @@ const publicOptions = {
     next: {
         revalidate: 3600,
     },
-};
-
-const publicOptionsNoCache = {
-    cache: "no-cache",
 };
 
 // public does not require authorization
@@ -50,7 +48,7 @@ export const fetchTwelvePublicArticles = async () => {
     }
 };
 
-export const fetchPublicArticleById = async (article_id) => {
+export const fetchPublicArticleById = async (article_id: string) => {
     try {
         const results = await fetch(
             `${publicUrl}/article?article_id=${article_id}`,
@@ -83,7 +81,7 @@ export const fetchLimitPublicReels = async () => {
     }
 };
 
-export const fetchOffsetReels = async (index) => {
+export const fetchOffsetReels = async (index: number) => {
     try {
         const results = await fetch(
             `${publicUrl}/reel/offset?index=${index}`,
@@ -96,7 +94,7 @@ export const fetchOffsetReels = async (index) => {
     }
 };
 
-export const fetchOffsetReelsByCity = async (index, city) => {
+export const fetchOffsetReelsByCity = async (index: number, city: string) => {
     try {
         const results = await fetch(
             `${publicUrl}/reel/offset?index=${index}&city=${city}`,
@@ -109,7 +107,7 @@ export const fetchOffsetReelsByCity = async (index, city) => {
     }
 };
 
-export const fetchAllPublicReelsByCity = async (city) => {
+export const fetchAllPublicReelsByCity = async (city: string) => {
     try {
         const results = await fetch(
             `${publicUrl}/reel?city=${city}`,
@@ -123,7 +121,7 @@ export const fetchAllPublicReelsByCity = async (city) => {
 };
 
 // stripe
-export const createPayment = async (data2) => {
+export const createPayment = async (data2: {}) => {
     try {
         const results = await fetch(`${url}/checkout_sessions`, {
             method: "POST",
@@ -135,11 +133,11 @@ export const createPayment = async (data2) => {
         console.log(err);
     }
 };
-export const fetchPaymentDetails = async (session_id) => {
+export const fetchPaymentDetails = async (session_id: string|null) => {
     try {
         const results = await fetch(
             `${url}/checkout_sessions?session_id=${session_id}`,
-            publicOptionsNoCache
+            { cache: "no-cache" }
         );
         const data = await results.json();
         return data;
@@ -149,11 +147,13 @@ export const fetchPaymentDetails = async (session_id) => {
 };
 
 // comments/article
-export const fetchCommentsByArticleId = async (article_id) => {
+export const fetchCommentsByArticleId = async (article_id: string) => {
     try {
         const results = await fetch(
             `${publicUrl}/comment?article_id=${article_id}`,
-            publicOptionsNoCache
+            {
+                cache: "no-cache",
+            }
         );
         const data = await results.json();
         return data;
@@ -162,7 +162,7 @@ export const fetchCommentsByArticleId = async (article_id) => {
     }
 };
 
-export const createComment = async (data2) => {
+export const createComment = async (data2: IComment) => {
     try {
         const results = await fetch(`${publicUrl}/comment`, {
             method: "POST",
@@ -175,11 +175,11 @@ export const createComment = async (data2) => {
     }
 };
 
-export const getSurveyCountByChoice = async (choice) => {
+export const getSurveyCountByChoice = async (choice: string) => {
     try {
         const results = await fetch(
             `${url}/survey1/count?survey_choice=${choice}`,
-            publicOptionsNoCache
+            { cache: "no-cache" }
         );
         const data = await results.json();
         return data;
@@ -190,10 +190,9 @@ export const getSurveyCountByChoice = async (choice) => {
 
 export const getSurveyCount = async () => {
     try {
-        const results = await fetch(
-            `${url}/survey1/count`,
-            publicOptionsNoCache
-        );
+        const results = await fetch(`${url}/survey1/count`, {
+            cache: "no-cache",
+        });
         const data = await results.json();
         return data;
     } catch (err) {
@@ -201,7 +200,7 @@ export const getSurveyCount = async () => {
     }
 };
 
-export const postSurveyCity = async (data2) => {
+export const postSurveyCity = async (data2: ISurvey) => {
     try {
         const results = await fetch(`${url}/survey1`, {
             method: "POST",

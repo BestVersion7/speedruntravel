@@ -6,9 +6,13 @@ import TextField from "@mui/material/TextField";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import Switch from "@mui/material/Switch";
 import { IArticleDashboard } from "@/types/types";
+import {useReducer} from 'react'
+import { articleReducer } from "../utils/reducer";
 
 const ArticleForm = (props:IArticleDashboard) => {
     const router = useRouter();
+
+    const [state, dispatch] = useReducer(articleReducer, )
 
     const handleCancel = () => {
         router.push("/dashboard");

@@ -1,24 +1,26 @@
 "use client";
 
 import Button from "@mui/material/Button";
-import { useRef } from "react";
+import { useReducer } from "react";
 import TextField from "@mui/material/TextField";
 import Link from "next/link";
 import { createSubscriber } from "../utils/apiCallsServerExperimental";
+import { subscriberReducer } from "../utils/reducer";
 
-const SubscriberForm = (props) => {
-    const emailRef = useRef();
-    const firstNameRef = useRef();
-    const lastNameRef = useRef();
+const SubscriberForm = (props: {
+    setSuccessRedirect: React.Dispatch<React.SetStateAction<Boolean>>;
+}) => {
+    const initialState = {
+        email: "",
+        first_name: "",
+        last_name: "",
+    };
+    const [state, dispatch] = useReducer(subscriberReducer, initialState);
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            const data = await createSubscriber({
-                email: emailRef.current.value,
-                first_name: firstNameRef.current.value,
-                last_name: lastNameRef.current.value,
-            });
+            const data = await createSubscriber(state);
             if (data == "fail") {
                 alert("Something went wrong");
             } else {
@@ -27,6 +29,18 @@ const SubscriberForm = (props) => {
         } catch (err) {
             alert(err);
         }
+    };
+
+    const handleChange = (
+        e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+    ) => {
+        dispatch({
+            type: "textChange",
+            payload: {
+                key: e.target.name,
+                value: e.target.value,
+            },
+        });
     };
 
     return (
@@ -38,7 +52,8 @@ const SubscriberForm = (props) => {
                     label="First Name"
                     required
                     fullWidth
-                    inputRef={firstNameRef}
+                    name="first_name"
+                    onChange={(e) => handleChange(e)}
                 />
                 <br />
                 <br />
@@ -46,7 +61,8 @@ const SubscriberForm = (props) => {
                     required
                     label="Last Name"
                     fullWidth
-                    inputRef={lastNameRef}
+                    name="last_name"
+                    onChange={(e) => handleChange(e)}
                 />
                 <br />
                 <br />
@@ -54,7 +70,8 @@ const SubscriberForm = (props) => {
                     required
                     label="Email"
                     fullWidth
-                    inputRef={emailRef}
+                    name="email"
+                    onChange={(e) => handleChange(e)}
                 />
                 <br /> <br />
                 <Button variant="contained" type="submit">

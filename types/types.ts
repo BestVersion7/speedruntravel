@@ -29,12 +29,37 @@ export interface IReel {
     reel_video_thumbnail: string;
 }
 
+export interface IReelCard extends IReel {
+    reel_responsive_key: string;
+    url_base: string;
+}
+
 export interface IComment {
     comment_id: number;
     comment_user_name: string;
     comment_user_image: string;
     comment_date: string;
     comment_body: string;
+}
+
+export interface ISurvey {
+    survey_id: number;
+    survey_name: string;
+    survey_email: string;
+    survey_choice: string;
+}
+
+export interface ISubscriber {
+    email: string;
+    first_name: string;
+    last_name: string;
+}
+
+export interface IEmailContact {
+    name: string;
+    email: string;
+    message: string;
+    phone: string;
 }
 
 export type CommentProp = {

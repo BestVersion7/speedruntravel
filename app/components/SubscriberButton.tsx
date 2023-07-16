@@ -6,9 +6,9 @@ import SubscriberForm from "./SubscriberForm";
 import SimpleDialog from "./SimpleDialog";
 import SubscriberFormSuccess from "./SubscriberFormSuccess";
 
-const SubscriberButton = (props) => {
-    const [openModal, setOpenModal] = useState(false);
-    const [successRedirect, setSuccessRedirect] = useState(false);
+const SubscriberButton = (props: { color: "secondary" }) => {
+    const [openModal, setOpenModal] = useState<boolean>(false);
+    const [successRedirect, setSuccessRedirect] = useState<boolean>(false);
 
     return (
         <>
@@ -19,7 +19,11 @@ const SubscriberButton = (props) => {
             >
                 Subscribe
             </Button>
-            <SimpleDialog cName="subscribe" openModal={openModal} setOpenModal={setOpenModal}>
+            <SimpleDialog
+                cName="subscribe"
+                openModal={openModal}
+                setOpenModal={setOpenModal}
+            >
                 {successRedirect ? (
                     <SubscriberFormSuccess setOpenModal={setOpenModal} />
                 ) : (

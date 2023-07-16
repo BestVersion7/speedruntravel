@@ -1,7 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
+import { IReelCard } from "@/types/types";
 
-const ReelCard = (props) => {
+const ReelCard = (props: IReelCard) => {
     return (
         <Link
             id={`ig-reel-image-${props.reel_responsive_key}`}

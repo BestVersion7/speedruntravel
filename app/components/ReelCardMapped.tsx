@@ -1,10 +1,11 @@
+import { IReel } from "@/types/types";
 import ReelCard from "./ReelCard";
 
-const ReelCardMapped = (props) => {
-    const filter2022 = props.reels.filter(
+const ReelCardMapped = (props: { reels: IReel[] }) => {
+    const filter2022: IReel = props.reels.filter(
         (item) => new Date(item.reel_date).getFullYear() === 2022
     );
-    const filter2023 = props.reels.filter(
+    const filter2023: IReel = props.reels.filter(
         (item) => new Date(item.reel_date).getFullYear() === 2023
     );
 
@@ -16,13 +17,7 @@ const ReelCardMapped = (props) => {
                         <ReelCard
                             key={item.reel_id}
                             url_base={props.url_base}
-                            reel_id={item.reel_id}
-                            reel_date={item.reel_date}
-                            reel_category={item.reel_category}
-                            reel_image={item.reel_image}
-                            reel_public={item.reel_public}
-                            reel_video={item.reel_video}
-                            reel_video_thumbnail={item.reel_video_thumbnail}
+                            {...item}
                         />
                     </div>
                 );
@@ -37,14 +32,7 @@ const ReelCardMapped = (props) => {
                         <ReelCard
                             key={item.reel_id}
                             url_base={props.url_base}
-                            reel_id={item.reel_id}
-                            reel_date={item.reel_date}
-                            reel_category={item.reel_category}
-                            reel_image={item.reel_image}
-                            reel_public={item.reel_public}
-                            reel_video={item.reel_video}
-                            reel_video_thumbnail={item.reel_video_thumbnail}
-                            pathname={props.pathname}
+                            {...item}
                         />
                     </div>
                 );

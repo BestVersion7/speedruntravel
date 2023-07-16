@@ -1,9 +1,5 @@
 "use client";
 
-import {
-    fetchAllArticles,
-    fetchAllReels,
-} from "../utils/apiCallsServerExperimental";
 import Link from "next/link";
 import { transformTitle } from "../utils/transformTitle";
 import { useState, useEffect } from "react";
@@ -13,20 +9,21 @@ export default function Dashboard() {
     const [articles, setArticles] = useState<IArticleAndComment[]>([]);
     const [reels, setReels] = useState<IReel[]>([]);
 
-    const getData = async () => {
-        const art: IArticleAndComment[] = await fetchAllArticles();
-        const reels: IReel[] = await fetchAllReels();
-        // console.log(reels)
-        setArticles(art);
-        setReels(reels);
+    const getData = async (signal: AbortSignal) => {
+        const art = await fetch("/api/article", { signal });
+        const reels = await fetch("/api/reel", { signal });
+        const artjson = await art.json();
+        const reelsjson = await reels.json();
+        setArticles(artjson);
+        setReels(reelsjson);
     };
 
     useEffect(() => {
-        // const controller = new AbortController();
-        getData();
-        // return () => {
-        //     controller.abort();
-        // };
+        const controller = new AbortController();
+        getData(controller.signal);
+        return () => {
+            controller.abort();
+        };
     }, []);
 
     return (

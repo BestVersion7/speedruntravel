@@ -10,11 +10,7 @@ import ListItem from "@mui/material/ListItem";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 
 export default function Navigation() {
-    const [top, setTop] = useState(false);
-
-    const toggleDrawer = () => {
-        setTop(!top);
-    };
+    const [top, setTop] = useState<boolean>(false);
 
     return (
         <header>
@@ -39,14 +35,14 @@ export default function Navigation() {
             </nav>
             <nav className="mobile-nav-true">
                 <MenuOpenIcon
-                    onClick={toggleDrawer}
+                    onClick={() => setTop((v) => !v)}
                     style={{ fontSize: "4em", color: "white" }}
                 />
 
                 <Drawer
                     anchor="right"
                     open={top}
-                    onClose={(prev) => toggleDrawer(!prev)}
+                    onClick={() => setTop((v) => !v)}
                     className="mobile-drawer"
                 >
                     <Box
@@ -56,7 +52,7 @@ export default function Navigation() {
                         }}
                     >
                         <div
-                            onClick={() => toggleDrawer(false)}
+                            onClick={() => setTop((v) => !v)}
                             className="mobile-drawer-header"
                         >
                             <MenuOpenIcon
@@ -65,24 +61,28 @@ export default function Navigation() {
                         </div>
                         <List style={{ marginTop: "-.5em" }}>
                             <Link className="nav-link" href="/">
-                                <ListItem onClick={toggleDrawer}>Home</ListItem>
+                                <ListItem onClick={() => setTop((v) => !v)}>
+                                    Home
+                                </ListItem>
                             </Link>
                             <Link className="nav-link" href="/blog">
-                                <ListItem onClick={toggleDrawer}>Blog</ListItem>
+                                <ListItem onClick={() => setTop((v) => !v)}>
+                                    Blog
+                                </ListItem>
                             </Link>
                             <Link className="nav-link" href="/reels">
-                                <ListItem onClick={toggleDrawer}>
+                                <ListItem onClick={() => setTop((v) => !v)}>
                                     Reels
                                 </ListItem>
                             </Link>
 
                             <Link className="nav-link" href="/contact">
-                                <ListItem onClick={toggleDrawer}>
+                                <ListItem onClick={() => setTop((v) => !v)}>
                                     Contact
                                 </ListItem>
                             </Link>
                             <Link className="nav-link" href="/support">
-                                <ListItem onClick={toggleDrawer}>
+                                <ListItem onClick={() => setTop((v) => !v)}>
                                     Support
                                 </ListItem>
                             </Link>

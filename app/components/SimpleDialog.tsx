@@ -4,7 +4,14 @@ import Dialog from "@mui/material/Dialog";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 
-const SimpleDialog = (props) => {
+interface Props {
+    cName: string,
+    openModal: boolean
+    setOpenModal: React.Dispatch<React.SetStateAction<Boolean>>
+    children: React.ReactNode
+}
+
+const SimpleDialog = (props:Props) => {
     return (
         <Dialog
             disableScrollLock

@@ -1,4 +1,4 @@
-export const transformTitle = (title) => {
+export const transformTitle = (title:string) => {
     const transformedTitle = title
         .replace(/- /g, "")
         .replace(/,/, "")
