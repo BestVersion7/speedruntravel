@@ -1,13 +1,33 @@
+"use client";
+
 import {
     fetchAllArticles,
     fetchAllReels,
 } from "../utils/apiCallsServerExperimental";
 import Link from "next/link";
 import { transformTitle } from "../utils/transformTitle";
+import { useState, useEffect } from "react";
+import { IArticleAndComment, IReel } from "@/types/types";
 
-export default async function Dashboard() {
-    const articles = await fetchAllArticles();
-    const reels = await fetchAllReels();
+export default function Dashboard() {
+    const [articles, setArticles] = useState<IArticleAndComment[]>([]);
+    const [reels, setReels] = useState<IReel[]>([]);
+
+    const getData = async () => {
+        const art: IArticleAndComment[] = await fetchAllArticles();
+        const reels: IReel[] = await fetchAllReels();
+        // console.log(reels)
+        setArticles(art);
+        setReels(reels);
+    };
+
+    useEffect(() => {
+        // const controller = new AbortController();
+        getData();
+        // return () => {
+        //     controller.abort();
+        // };
+    }, []);
 
     return (
         <>

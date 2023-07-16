@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { transformTitle } from "../utils/transformTitle";
+import { IArticleAndUrl } from "@/types/types";
 
-export default function ArticleCard(props) {
+export default function ArticleCard(props: IArticleAndUrl) {
     const articleName = transformTitle(props.article_title);
     return (
         <Link

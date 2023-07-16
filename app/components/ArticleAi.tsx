@@ -8,7 +8,7 @@ import Link from "next/link";
 import { transformTitle } from "../utils/transformTitle";
 import { IArticle } from "@/types/types";
 
-export default function ArticleAi(props) {
+export default function ArticleAi(props: { articles: IArticle[] }) {
     return (
         <div className="article-item-ct">
             {props.articles.map((item) => (

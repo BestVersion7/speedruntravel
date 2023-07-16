@@ -14,6 +14,7 @@ const options = {
 export const fetchAllArticles = async () => {
     try {
         const results = await fetch(`${url}/article`, options);
+
         const data = await results.json();
         return data;
     } catch (err) {

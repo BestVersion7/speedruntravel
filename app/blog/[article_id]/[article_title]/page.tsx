@@ -8,6 +8,8 @@ import Image from "next/image";
 import ArticleAi from "@/app/components/ArticleAi";
 import NotFound from "@/app/not-found";
 import CommentMapped from "./CommentMapped";
+import { ArticleParams } from "@/types/types";
+import { IArticle } from "@/types/types";
 
 export const generateStaticParams = () => {
     return [
@@ -18,7 +20,7 @@ export const generateStaticParams = () => {
     ];
 };
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata({ params }: ArticleParams) {
     const article = await fetchPublicArticleById(params.article_id);
     return {
         title: article?.article_title ?? "Not found",
@@ -27,23 +29,19 @@ export async function generateMetadata({ params }) {
     };
 }
 
-const ArticleTitlePage = async ({ params }) => {
-    const article = await fetchPublicArticleById(params.article_id);
+const ArticleTitlePage = async ({ params }: ArticleParams) => {
+    const article: IArticle = await fetchPublicArticleById(params.article_id);
 
     if (article == null) {
         return <NotFound />;
     }
-    const fiveArticles = await fetchFivePublicArticles();
+    const fiveArticles: IArticle[] = await fetchFivePublicArticles();
 
     return (
         <>
             <div className="article-page-divider">
                 <div>
-                    <ArticleCardDetail
-                        article_title={article.article_title}
-                        article_post={article.article_post}
-                        article_date={article.article_date}
-                    />
+                    <ArticleCardDetail {...article} />
                     <hr />
                     <h2>About the Author:</h2>
                     <div className="section-profile-about">
@@ -72,10 +70,7 @@ const ArticleTitlePage = async ({ params }) => {
                 </div>
                 <aside className="article-ai-body">
                     <h2>Most Recent:</h2>
-                    <ArticleAi
-                        article_id={params.article_id}
-                        articles={fiveArticles}
-                    />
+                    <ArticleAi articles={fiveArticles} />
                     {/* <Adsense /> */}
                 </aside>
             </div>

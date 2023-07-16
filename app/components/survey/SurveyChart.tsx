@@ -11,8 +11,8 @@ import { useRouter } from "next/navigation";
 // loop thru cities
 
 export default function SurveyChart() {
-    const [totalCount, setTotalCount] = useState(0);
-    const [seriesData, setSeriesData] = useState([]);
+    const [totalCount, setTotalCount] = useState<number>(0);
+    const [seriesData, setSeriesData] = useState<number[]>([]);
     const router = useRouter();
 
     const choiceLength = choices.length;
@@ -25,6 +25,7 @@ export default function SurveyChart() {
             const { _count } = await getSurveyCountByChoice(choices[i]);
             data.push(_count);
         }
+
         setSeriesData(data);
     };
 
@@ -86,10 +87,7 @@ export default function SurveyChart() {
 
             <p>
                 Total respondents: {totalCount}{" "}
-                <button onClick={handleRetake}>
-                    Retake Survey
-                </button>
-            
+                <button onClick={handleRetake}>Retake Survey</button>
             </p>
         </div>
     );

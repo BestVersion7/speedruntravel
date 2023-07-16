@@ -4,8 +4,9 @@ import ReactMarkdown from "react-markdown";
 import Link from "next/link";
 import { formatDate2 } from "../utils/formatDate";
 import SubscriberButton from "./SubscriberButton";
+import { IArticle } from "@/types/types";
 
-const ArticleCardDetail = (props) => {
+const ArticleCardDetail = (props: IArticle) => {
     return (
         <article>
             <h1 style={{ fontSize: "2em" }}>{props.article_title}</h1>

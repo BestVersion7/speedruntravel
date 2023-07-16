@@ -5,14 +5,10 @@ import { useRouter } from "next/navigation";
 import TextField from "@mui/material/TextField";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import Switch from "@mui/material/Switch";
-import BasicModal from "./BasicModal";
-import { useState, useRef } from "react";
-import Image from "next/image";
+import { IArticleDashboard } from "@/types/types";
 
-const ArticleForm = (props) => {
+const ArticleForm = (props:IArticleDashboard) => {
     const router = useRouter();
-    const [openModal, setOpenModal] = useState(false);
-    const [loading, setLoading] = useState(false);
 
     const handleCancel = () => {
         router.push("/dashboard");
