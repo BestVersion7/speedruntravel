@@ -6,6 +6,7 @@ import CardMedia from "@mui/material/CardMedia";
 import { formatDate } from "../utils/formatDate";
 import Link from "next/link";
 import { transformTitle } from "../utils/transformTitle";
+import { IArticle } from "@/types/types";
 
 export default function ArticleAi(props) {
     return (

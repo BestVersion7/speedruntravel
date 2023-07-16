@@ -7,10 +7,11 @@ import {
 import ArticleCard from "./components/ArticleCard";
 import SubscriberButton from "./components/SubscriberButton";
 import SurveyCity from "./components/survey/SurveyCity";
+import { IArticle, IReel } from "@/types/types";
 
 export default async function Home() {
-    const articles = await fetchTwelvePublicArticles();
-    const reels = await fetchLimitPublicReels();
+    const articles: IArticle[] = await fetchTwelvePublicArticles();
+    const reels: IReel[] = await fetchLimitPublicReels();
     return (
         <div>
             <h2>
@@ -30,10 +31,7 @@ export default async function Home() {
                     <ArticleCard
                         key={item.article_id}
                         url_base="blog"
-                        article_id={item.article_id}
-                        article_title={item.article_title}
-                        article_image_small={item.article_image_small}
-                        article_public={item.article_public}
+                        {...item}
                     />
                 ))}
             </div>
@@ -51,11 +49,9 @@ export default async function Home() {
                     {reels.map((item, i) => (
                         <ReelCard
                             url_base="reels"
-                            reel_id={item.reel_id}
                             reel_responsive_key={i}
                             key={i}
-                            reel_image={item.reel_image}
-                            reel_category={item.reel_category}
+                            {...item}
                         />
                     ))}
                 </div>

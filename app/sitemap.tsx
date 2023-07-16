@@ -1,14 +1,15 @@
+import { IArticle } from "@/types/types";
 import { fetchAllPublicArticles } from "./utils/apiCalls";
 import { transformTitle } from "./utils/transformTitle";
 
-let siteUrl;
+let siteUrl: string;
 
 process.env.NODE_ENV == "production"
     ? (siteUrl = "https://speedruntravel.com")
     : (siteUrl = "http://localhost:3000");
 
 export default async function sitemap() {
-    const data = await fetchAllPublicArticles();
+    const data: IArticle[] = await fetchAllPublicArticles();
 
     const articles = data.map((article) => ({
         url: `${siteUrl}/blog/${article.article_id}/${transformTitle(
