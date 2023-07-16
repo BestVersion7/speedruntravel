@@ -147,7 +147,7 @@ export const fetchPaymentDetails = async (session_id: string|null) => {
 };
 
 // comments/article
-export const fetchCommentsByArticleId = async (article_id: string) => {
+export const fetchCommentsByArticleId = async (article_id: number) => {
     try {
         const results = await fetch(
             `${publicUrl}/comment?article_id=${article_id}`,

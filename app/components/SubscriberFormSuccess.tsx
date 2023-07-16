@@ -1,6 +1,6 @@
 import Button from "@mui/material/Button";
 
-const SubscriberFormSuccess = (props: {setOpenModal: React.Dispatch<React.SetStateAction<Boolean>>}) => {
+const SubscriberFormSuccess = (props: {setOpenModal: React.Dispatch<React.SetStateAction<boolean>>}) => {
     const handleClose = () => {
         props.setOpenModal(false);
     };

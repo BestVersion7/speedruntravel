@@ -17,6 +17,8 @@ export default function SurveyForm() {
 
     const handleSubmit = async () => {
         await postSurveyCity({
+            survey_email: "test@gmail.com",
+            survey_name: "test",
             survey_choice: city,
         });
 

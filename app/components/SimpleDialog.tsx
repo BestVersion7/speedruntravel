@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 interface Props {
     cName: string,
     openModal: boolean
-    setOpenModal: React.Dispatch<React.SetStateAction<Boolean>>
+    setOpenModal: React.Dispatch<React.SetStateAction<boolean>>
     children: React.ReactNode
 }
 

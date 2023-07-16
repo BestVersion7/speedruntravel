@@ -2,7 +2,6 @@ import ArticleCardDetail from "@/app/components/ArticleCardDetail";
 import {
     fetchPublicArticleById,
     fetchFivePublicArticles,
-    fetchCommentsByArticleId,
 } from "@/app/utils/apiCalls";
 import Image from "next/image";
 import ArticleAi from "@/app/components/ArticleAi";

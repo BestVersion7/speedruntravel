@@ -8,7 +8,7 @@ import { IComment, CommentProp } from "@/types/types";
 
 export default function CommentMapped(props: CommentProp) {
     const [comments, setComments] = useState<IComment[]>([]);
-    const [loading, setLoading] = useState<Boolean>(true);
+    const [loading, setLoading] = useState<boolean>(true);
 
     const getComments = async () => {
         const com: IComment[] = await fetchCommentsByArticleId(

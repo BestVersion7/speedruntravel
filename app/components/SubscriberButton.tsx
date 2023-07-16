@@ -6,7 +6,7 @@ import SubscriberForm from "./SubscriberForm";
 import SimpleDialog from "./SimpleDialog";
 import SubscriberFormSuccess from "./SubscriberFormSuccess";
 
-const SubscriberButton = (props: { color: "secondary" }) => {
+const SubscriberButton = (props: { color?: "secondary" }) => {
     const [openModal, setOpenModal] = useState<boolean>(false);
     const [successRedirect, setSuccessRedirect] = useState<boolean>(false);
 

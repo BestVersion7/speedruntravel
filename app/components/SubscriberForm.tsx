@@ -8,7 +8,7 @@ import { createSubscriber } from "../utils/apiCallsServerExperimental";
 import { subscriberReducer } from "../utils/reducer";
 
 const SubscriberForm = (props: {
-    setSuccessRedirect: React.Dispatch<React.SetStateAction<Boolean>>;
+    setSuccessRedirect: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
     const initialState = {
         email: "",

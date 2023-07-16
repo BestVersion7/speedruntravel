@@ -43,7 +43,6 @@ export interface IComment {
 }
 
 export interface ISurvey {
-    survey_id: number;
     survey_name: string;
     survey_email: string;
     survey_choice: string;
@@ -68,7 +67,7 @@ export type CommentProp = {
 
 export type ArticleParams = {
     params: {
-        article_id: number;
+        article_id: string;
     };
 };
 
