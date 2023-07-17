@@ -3,7 +3,7 @@
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Switch from "@mui/material/Switch";
-import { useState, useRef } from "react";
+import { useState, useReducer } from "react";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
@@ -14,19 +14,24 @@ import {
     createReel,
     updateReelById,
 } from "../utils/apiCallsServerExperimental";
+import { reelReducer } from "../utils/reducer";
+import { IReel, IReelForm } from "@/types/types";
 
-const ReelForm = (props) => {
+const ReelForm = (props: IReelForm) => {
     const [openModal, setOpenModal] = useState(false);
     const router = useRouter();
-
-    const [publicRef, setPublicRef] = useState(props.reel_public);
-    const [videoRef, setVideoRef] = useState(props.reel_video);
     const [loading, setLoading] = useState(false);
 
-    const videoThumbnailRef = useRef();
-    const dateRef = useRef();
-    const imageRef = useRef();
-    const categoryRef = useRef();
+    const [state, dispatch] = useReducer(reelReducer, { ...props });
+
+    const handleChange = (
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    ) => {
+        dispatch({
+            type: "textChange",
+            payload: { key: e.target.name, value: e.target.value },
+        });
+    };
 
     let handleCreate;
     let handleUpdate;
@@ -34,18 +39,9 @@ const ReelForm = (props) => {
     process.env.NODE_ENV === "development"
         ? (handleCreate = async () => {
               setLoading(true);
-              const data2 = {
-                  reel_date: dateRef.current.value,
-                  reel_category: categoryRef.current.value,
-                  reel_image: imageRef.current.value,
-                  reel_public: publicRef,
-                  reel_video: videoRef,
-                  reel_video_thumbnail: videoThumbnailRef.current?.value ?? "",
-              };
 
               try {
-                  const data = await createReel(data2);
-
+                  await createReel(state);
                   setLoading(false);
               } catch (err) {
                   alert(err);
@@ -59,16 +55,9 @@ const ReelForm = (props) => {
     process.env.NODE_ENV === "development"
         ? (handleUpdate = async () => {
               setLoading(true);
-              const data2 = {
-                  reel_date: dateRef.current.value,
-                  reel_category: categoryRef.current.value,
-                  reel_image: imageRef.current.value,
-                  reel_public: publicRef,
-                  reel_video: videoRef,
-                  reel_video_thumbnail: videoThumbnailRef.current?.value ?? "",
-              };
+
               try {
-                  const data = await updateReelById(props.reel_id, data2);
+                  await updateReelById(props.reel_id, state);
                   setLoading(false);
               } catch (err) {
                   return alert(err);
@@ -122,23 +111,33 @@ const ReelForm = (props) => {
             </Button>
             <p>
                 <Switch
-                    checked={publicRef}
-                    onChange={() => setPublicRef((v) => !v)}
+                    checked={props.reel_public}
+                    onChange={() =>
+                        dispatch({
+                            type: "textChange",
+                            payload: {
+                                key: "reel_public",
+                                value: !state.reel_public,
+                            },
+                        })
+                    }
                     inputProps={{ "aria-label": "controlled" }}
                 />
-                {publicRef ? <span>Public</span> : <span>Private</span>}
+                {state.reel_public ? <span>Public</span> : <span>Private</span>}
             </p>
             <TextField
                 label="Date"
                 fullWidth
-                inputRef={dateRef}
+                name="reel_date"
+                onChange={(e) => handleChange(e)}
                 defaultValue={props.reel_date}
             />
             <br /> <br />
             <TextField
                 label="City"
                 fullWidth
-                inputRef={categoryRef}
+                name="reel_category"
+                onChange={(e) => handleChange(e)}
                 defaultValue={props.reel_category}
             />
             <br /> <br />
@@ -146,8 +145,16 @@ const ReelForm = (props) => {
                 <FormControlLabel
                     control={
                         <Checkbox
-                            checked={videoRef}
-                            onChange={() => setVideoRef((v) => !v)}
+                            checked={!state.reel_video}
+                            onChange={() =>
+                                dispatch({
+                                    type: "textChange",
+                                    payload: {
+                                        key: "reel_video",
+                                        value: !state.reel_video,
+                                    },
+                                })
+                            }
                         />
                     }
                     label="Video"
@@ -159,24 +166,25 @@ const ReelForm = (props) => {
                 multiline
                 fullWidth
                 rows={3}
-                inputRef={imageRef}
+                onChange={(e) => handleChange(e)}
+                value="reel_image"
                 defaultValue={props.reel_image}
             />
             <br />
             <br />
-            {videoRef ? (
+            {state.reel_video ? (
                 <>
                     <TextField
                         label="Thumbnail Link"
                         multiline
                         fullWidth
                         minRows={3}
-                        inputRef={videoThumbnailRef}
+                        value="reel_video_thumbnail"
+                        onChange={(e) => handleChange(e)}
                     />
                     <br />
                     <br />
                     <video
-                        // className={`ig-reel-image-${props.reel_public}`}
                         width="100%"
                         height="auto"
                         controls
@@ -191,7 +199,6 @@ const ReelForm = (props) => {
                     width="400"
                     height="400"
                     style={{ objectFit: "cover" }}
-                    // src={props.reel_image}
                     src={props.reel_image}
                     alt={props.reel_category}
                 />

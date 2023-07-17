@@ -2,9 +2,10 @@
 import ArticleForm from "@/app/components/ArticleForm";
 import ArticleCardDetail from "@/app/components/ArticleCardDetail";
 import BasicModal from "@/app/components/BasicModal";
-import { useState } from "react";
+import { useState, useReducer } from "react";
 import Button from "@mui/material/Button";
 import { updateArticleById } from "@/app/utils/apiCallsServerExperimental";
+import { articleReducer } from "@/app/utils/reducer";
 
 const ArticleModal = (props) => {
     const [articlePublic, setArticlePublic] = useState(props.article_public);
@@ -17,18 +18,13 @@ const ArticleModal = (props) => {
     const [openModal, setOpenModal] = useState(false);
     const [loading, setLoading] = useState(false);
 
+    const [state, dispatch] = useReducer(articleReducer, {...props})
+
     let handleUpdateArticle;
     process.env.NODE_ENV === "development"
         ? (handleUpdateArticle = async () => {
               setLoading(true);
-              const data2 = {
-                  article_public: articlePublic,
-                  article_image_small: articleImageSmall,
-                  article_title: articleTitle,
-                  article_date: articleDate,
-                  article_post: articlePost,
-              };
-              const data = await updateArticleById(props.article_id, data2);
+              await updateArticleById(state);
               setLoading(false);
           })
         : (handleUpdateArticle = () => {

@@ -1,16 +1,16 @@
 import { IReel } from "@/types/types";
 import ReelCard from "./ReelCard";
 
-const ReelCardMapped = (props: { reels: IReel[] }) => {
-    const filter2022: IReel = props.reels.filter(
+const ReelCardMapped = (props: { reels: IReel[]; url_base: string }) => {
+    const filter2022 = props.reels.filter(
         (item) => new Date(item.reel_date).getFullYear() === 2022
     );
-    const filter2023: IReel = props.reels.filter(
+    const filter2023 = props.reels.filter(
         (item) => new Date(item.reel_date).getFullYear() === 2023
     );
 
-    const getReelby2022 = (month) =>
-        filter2022.reduce((acc, item) => {
+    const getReelby2022 = (month: number) =>
+        filter2022.reduce((acc: React.ReactNode[], item) => {
             if (new Date(item.reel_date).getMonth() === month) {
                 acc.push(
                     <div key={item.reel_id}>
@@ -24,8 +24,8 @@ const ReelCardMapped = (props: { reels: IReel[] }) => {
             }
             return acc;
         }, []);
-    const getReelby2023 = (month) =>
-        filter2023.reduce((acc, item) => {
+    const getReelby2023 = (month: number) =>
+        filter2023.reduce((acc: React.ReactNode[], item) => {
             if (new Date(item.reel_date).getMonth() === month) {
                 acc.push(
                     <div key={item.reel_id}>
@@ -64,7 +64,7 @@ const ReelCardMapped = (props: { reels: IReel[] }) => {
                             <div className="reel-body">{getReelby2023(i)}</div>
                         </div>
                     ))
-                    .sort((a, b) => b.key - a.key)}
+                    .sort((a, b) => Number(b.key) - Number(a.key))}
             </div>
             <div>
                 <h2>2022</h2>
@@ -88,7 +88,7 @@ const ReelCardMapped = (props: { reels: IReel[] }) => {
                             <div className="reel-body">{getReelby2022(i)}</div>
                         </div>
                     ))
-                    .sort((a, b) => b.key - a.key)}
+                    .sort((a, b) => Number(b.key) - Number(a.key))}
             </div>
         </>
     );

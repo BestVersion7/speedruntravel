@@ -1,6 +1,5 @@
 "use client";
 
-import { fetchArticleById } from "@/app/utils/apiCallsServerExperimental";
 import { IArticle } from "@/types/types";
 import ArticleForm from "@/app/components/ArticleForm";
 import { useState, useEffect } from "react";
@@ -10,13 +9,20 @@ export default function ArticleIdPage({
 }: {
     params: { article_id: number };
 }) {
-    const [article, setArticle] = useState({});
+    const [article, setArticle] = useState<IArticle>({
+        article_date: "test",
+        article_id: 1,
+        article_image_small: "test",
+        article_post: "test",
+        article_public: false,
+        article_title: "test",
+    });
 
     const fetchArticle = async () => {
-        const data = await fetchArticleById(params.article_id);
-        if (data == null) {
-            return <div>Not found</div>;
-        }
+        const results = await fetch(
+            `/api/article?article_id=${params.article_id}`
+        );
+        const data = await results.json();
         setArticle(data);
     };
 

@@ -48,7 +48,7 @@ export const fetchTwelvePublicArticles = async () => {
     }
 };
 
-export const fetchPublicArticleById = async (article_id: string) => {
+export const fetchPublicArticleById = async (article_id: number) => {
     try {
         const results = await fetch(
             `${publicUrl}/article?article_id=${article_id}`,

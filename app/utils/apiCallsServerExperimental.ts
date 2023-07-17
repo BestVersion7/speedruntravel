@@ -37,7 +37,7 @@ export const updateArticleById = async (
     }
 };
 
-export const updateReelById = async (reel_id: string, data2: IReel) => {
+export const updateReelById = async (reel_id: number, data2: IReel) => {
     try {
         const results = await fetch(`${url}/reel?reel_id=${reel_id}`, {
             method: "PUT",

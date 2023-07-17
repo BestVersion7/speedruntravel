@@ -7,8 +7,7 @@ import Image from "next/image";
 import ArticleAi from "@/app/components/ArticleAi";
 import NotFound from "@/app/not-found";
 import CommentMapped from "./CommentMapped";
-import { ArticleParams } from "@/types/types";
-import { IArticle } from "@/types/types";
+import { ArticleParams, IArticle } from "@/types/types";
 
 export const generateStaticParams = () => {
     return [

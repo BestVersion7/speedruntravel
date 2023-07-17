@@ -15,7 +15,11 @@ export const metadata = {
         "traveling, 24 hours, city, raleigh, boston, dc, virginia, amsterdam, london, salzburg",
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({
+    children,
+}: {
+    children: React.ReactNode;
+}) {
     return (
         <html lang="en">
             <GoogleAnalytics />

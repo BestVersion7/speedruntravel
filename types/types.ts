@@ -16,7 +16,7 @@ export interface IArticleAndUrl extends IArticle {
 }
 
 export interface IArticleDashboard extends IArticle {
-    setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
+    // setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface IReel {
@@ -29,8 +29,12 @@ export interface IReel {
     reel_video_thumbnail: string;
 }
 
+export interface IReelForm extends IReel {
+    crud: "update" | "create";
+}
+
 export interface IReelCard extends IReel {
-    reel_responsive_key: string;
+    reel_responsive_key?: number;
     url_base: string;
 }
 
@@ -67,7 +71,7 @@ export type CommentProp = {
 
 export type ArticleParams = {
     params: {
-        article_id: string;
+        article_id: number;
     };
 };
 
@@ -80,3 +84,10 @@ export type ReelParams = {
 export type ChartType = {
     _count: number;
 };
+
+export interface ModalProps {
+    openModal: boolean;
+    setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
+    size?: "small" | "large";
+    children: React.ReactNode;
+}
