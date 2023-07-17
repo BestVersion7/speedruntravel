@@ -4,7 +4,7 @@ const CreateArticlePage = () => {
     const initialState = {
         article_id: 1,
         article_date: "2023-07-02T00:59:27.320Z",
-        article_title: "test",
+        article_title: "test1",
         article_image_small: "test",
         article_public: false,
         article_post: "test",
