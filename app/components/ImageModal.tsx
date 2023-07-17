@@ -7,35 +7,37 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
+import { ReelSlideshowProps, SlideshowProps } from "@/types/types";
 
-function ImageModal2(props) {
+function ImageModal2(props: SlideshowProps) {
     const router = useRouter();
 
-    const compareOne = (index) => {
+    const compareOne = (index: number) => {
         let display;
         index === 1 ? (display = "block") : (display = "none");
         return display;
     };
-    const compareZero = (index) => {
+    const compareZero = (index: number) => {
         let display;
         index === 0 ? (display = "block") : (display = "none");
-        if (props.paramsId == props.start_index) {
+        if (props.paramsId == props.startIndex) {
             display = "none";
         }
         return display;
     };
-    const compareTwo = (index) => {
+    const compareTwo = (index: number) => {
         let display;
         index === 2 ? (display = "block") : (display = "none");
-        if (props.paramsId == props.end_index) {
+        if (props.paramsId == props.endIndex) {
             display = "none";
         }
         return display;
     };
 
-    const handleClick = (index) => {
+    const handleClick = (index: number) => {
         router.push(`/${props.redirectUrl}/${index}`);
     };
+
     return (
         <>
             {props.reel_video ? (
@@ -61,6 +63,7 @@ function ImageModal2(props) {
                     alt={props.reel_category}
                 />
             )}
+            {/* don't know how to fix */}
             <ArrowBackIcon
                 disabled={true}
                 style={{
@@ -101,7 +104,7 @@ function ImageModal2(props) {
     );
 }
 
-export default function ImageModal(props) {
+export default function ImageModal(props: ReelSlideshowProps) {
     const router = useRouter();
     const handleClose = () => {
         router.push(`/${props.redirectUrl}`);
@@ -117,17 +120,14 @@ export default function ImageModal(props) {
             aria-describedby="Reels-Slideshow"
         >
             <Box className="modal-box-2">
-                {props.threeReels.map((item, index) => (
+                {props.threeReels?.map((item, index) => (
                     <ImageModal2
                         redirectUrl={props.redirectUrl}
-                        reel_category={item.reel_category}
-                        reel_id={item.reel_id}
-                        index={index}
-                        reel_image={item.reel_image}
-                        start_index={props.startIndex}
-                        end_index={props.endIndex}
                         key={index}
-                        reel_video={item.reel_video}
+                        {...item}
+                        index={index}
+                        startIndex={props.startIndex}
+                        endIndex={props.endIndex}
                         paramsId={props.paramsId}
                     />
                 ))}

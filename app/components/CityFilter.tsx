@@ -9,10 +9,10 @@ import Link from "next/link";
 import { Button } from "@mui/material";
 import { useRouter } from "next/navigation";
 
-const CityFilter = (props) => {
+const CityFilter = (props: { city: string }) => {
     const router = useRouter();
 
-    const handleChange = (e) => {
+    const handleChange = (e: any) => {
         router.push(`/reels/city/${e.target.value}`);
     };
 

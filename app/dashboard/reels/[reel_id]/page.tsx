@@ -1,8 +1,38 @@
-import { fetchReelById } from "@/app/utils/apiCallsServerExperimental";
-import ReelForm from "@/app/components/ReelForm";
+import { useState, useEffect } from "react";
 
-export default async function DashboardReelPage({ params }) {
-    const reel = await fetchReelById(params.reel_id);
+import ReelForm from "@/app/components/ReelForm";
+import { IReel } from "@/types/types";
+
+export default function DashboardReelPage({
+    params,
+}: {
+    params: { reel_id: number };
+}) {
+    const [reel, setReel] = useState<IReel>({
+        reel_id: 1,
+        reel_public: false,
+        reel_image:
+            "https://res.cloudinary.com/crimson-flamingo/image/upload/c_fill,g_auto,w_1000,h_1000/v1653157699/travelsite2022/may1013/20220511_110316.jpg",
+        reel_category: "tes",
+        reel_date: "test",
+        reel_video: false,
+        reel_video_thumbnail: "",
+    });
+    const getReelById = async (signal: AbortSignal) => {
+        const results = await fetch(`/api/reel?reel_id=${params.reel_id}`, {
+            signal,
+        });
+        const data = await results.json();
+        setReel(data);
+    };
+
+    useEffect(() => {
+        const controller = new AbortController();
+        getReelById(controller.signal);
+        return () => {
+            controller.abort();
+        };
+    }, []);
 
     return (
         <>

@@ -44,7 +44,7 @@ export interface IComment {
     comment_user_image: string;
     comment_date: string;
     comment_body: string;
-    article_id?: number
+    article_id?: number;
 }
 
 export interface ISurvey {
@@ -91,4 +91,17 @@ export interface ModalProps {
     setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
     size?: "small" | "large";
     children: React.ReactNode;
+}
+
+// generic
+export interface ReelSlideshowProps {
+    paramsId: number;
+    startIndex: number;
+    endIndex: number;
+    redirectUrl: string;
+    threeReels?: IReel[];
+}
+
+export interface SlideshowProps extends ReelSlideshowProps, IReel {
+    index: number;
 }

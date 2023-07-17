@@ -8,12 +8,12 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { createPayment } from "../utils/apiCalls";
-import { Stripe } from "@stripe/stripe-js";
+import { Stripe, StripeError } from "@stripe/stripe-js";
 
 const DonateForm = () => {
     const [amount, setAmount] = useState<string>("0");
     // fix
-    const customAmountRef = useRef<null>(null);
+    const customAmountRef = useRef<any>();
     const [currency, setCurrency] = useState<string>("usd");
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -33,7 +33,7 @@ const DonateForm = () => {
             // Redirect to Checkout.
             const stripe: Stripe | null = await getStripe();
 
-            const { error } = await stripe.redirectToCheckout({
+            const { error }: any = await stripe?.redirectToCheckout({
                 sessionId: checkoutSession,
             });
             alert(error.message);
