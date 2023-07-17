@@ -4,11 +4,6 @@ import { fetchPaymentDetails } from "@/app/utils/apiCalls";
 
 import Link from "next/link";
 
-export const metadata = {
-    title: "Support",
-    description: "Support my travel adventure blog.",
-};
-
 const SuccessPage = async () => {
     const searchParams = useSearchParams();
     const session_id = searchParams.get("session_id");
