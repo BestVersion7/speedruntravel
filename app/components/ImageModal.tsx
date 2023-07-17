@@ -65,7 +65,6 @@ function ImageModal2(props: SlideshowProps) {
             )}
             {/* don't know how to fix */}
             <ArrowBackIcon
-                disabled={true}
                 style={{
                     zIndex: 2,
                     display: compareZero(props.index),
