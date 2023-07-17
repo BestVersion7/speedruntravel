@@ -12,7 +12,7 @@ const CreateArticlePage = () => {
     return (
         <>
             <h2>Create Here</h2>
-            <ArticleForm {...initialState} />
+            <ArticleForm crud="create" {...initialState} />
         </>
     );
 };

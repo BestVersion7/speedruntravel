@@ -47,12 +47,12 @@ export default async function CityPageFilterId({
         <div>No data</div>;
     } else {
         threeReels = await fetchOffsetReelsByCity(
-            filteredReels[0][0],
-            filteredReels[0][2]
+            Number(filteredReels[0][0]),
+            filteredReels[0][2].toString()
         );
     }
-    const startIndex = mappedReels[0][1];
-    const endIndex = mappedReels[mappedReels.length - 1][1];
+    const startIndex = Number(mappedReels[0][1]);
+    const endIndex = Number(mappedReels[mappedReels.length - 1][1]);
 
     return (
         <div>

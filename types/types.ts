@@ -7,6 +7,10 @@ export interface IArticle {
     article_post: string;
 }
 
+export interface IArticleForm extends IArticle {
+    crud: "create" | "update";
+}
+
 export interface IArticleAndComment extends IArticle {
     comment: IComment[];
 }

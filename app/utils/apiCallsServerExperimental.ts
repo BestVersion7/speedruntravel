@@ -21,7 +21,7 @@ export const createArticle = async (data2: IArticle) => {
 };
 
 export const updateArticleById = async (
-    article_id: string,
+    article_id: number,
     data2: IArticle
 ) => {
     try {

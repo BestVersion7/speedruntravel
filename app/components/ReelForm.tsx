@@ -15,7 +15,7 @@ import {
     updateReelById,
 } from "../utils/apiCallsServerExperimental";
 import { reelReducer } from "../utils/reducer";
-import { IReel, IReelForm } from "@/types/types";
+import { IReelForm } from "@/types/types";
 
 const ReelForm = (props: IReelForm) => {
     const [openModal, setOpenModal] = useState(false);
@@ -38,9 +38,8 @@ const ReelForm = (props: IReelForm) => {
 
     process.env.NODE_ENV === "development"
         ? (handleCreate = async () => {
-              setLoading(true);
-
               try {
+                  setLoading(true);
                   await createReel(state);
                   setLoading(false);
               } catch (err) {
@@ -54,9 +53,8 @@ const ReelForm = (props: IReelForm) => {
 
     process.env.NODE_ENV === "development"
         ? (handleUpdate = async () => {
-              setLoading(true);
-
               try {
+                  setLoading(true);
                   await updateReelById(props.reel_id, state);
                   setLoading(false);
               } catch (err) {
@@ -111,7 +109,7 @@ const ReelForm = (props: IReelForm) => {
             </Button>
             <p>
                 <Switch
-                    checked={props.reel_public}
+                    defaultChecked={props.reel_public || false}
                     onChange={() =>
                         dispatch({
                             type: "textChange",
@@ -126,7 +124,6 @@ const ReelForm = (props: IReelForm) => {
                 {state.reel_public ? <span>Public</span> : <span>Private</span>}
             </p>
             <TextField
-                label="Date"
                 fullWidth
                 name="reel_date"
                 onChange={(e) => handleChange(e)}
@@ -134,7 +131,6 @@ const ReelForm = (props: IReelForm) => {
             />
             <br /> <br />
             <TextField
-                label="City"
                 fullWidth
                 name="reel_category"
                 onChange={(e) => handleChange(e)}
@@ -145,7 +141,7 @@ const ReelForm = (props: IReelForm) => {
                 <FormControlLabel
                     control={
                         <Checkbox
-                            checked={!state.reel_video}
+                            defaultChecked={state.reel_video || false}
                             onChange={() =>
                                 dispatch({
                                     type: "textChange",
@@ -162,12 +158,11 @@ const ReelForm = (props: IReelForm) => {
             </FormGroup>
             <br />
             <TextField
-                label="Url Link"
                 multiline
                 fullWidth
                 rows={3}
                 onChange={(e) => handleChange(e)}
-                value="reel_image"
+                name="reel_image"
                 defaultValue={props.reel_image}
             />
             <br />
@@ -179,7 +174,7 @@ const ReelForm = (props: IReelForm) => {
                         multiline
                         fullWidth
                         minRows={3}
-                        value="reel_video_thumbnail"
+                        name="reel_video_thumbnail"
                         onChange={(e) => handleChange(e)}
                     />
                     <br />

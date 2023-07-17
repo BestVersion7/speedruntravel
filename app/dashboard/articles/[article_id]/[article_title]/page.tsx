@@ -9,14 +9,7 @@ export default function ArticleIdPage({
 }: {
     params: { article_id: number };
 }) {
-    const [article, setArticle] = useState<IArticle>({
-        article_date: "test",
-        article_id: 1,
-        article_image_small: "test",
-        article_post: "test",
-        article_public: false,
-        article_title: "test",
-    });
+    const [article, setArticle] = useState<IArticle | any>({});
 
     const fetchArticle = async () => {
         const results = await fetch(
@@ -36,7 +29,7 @@ export default function ArticleIdPage({
                 Update Article Here (updates will take 1 hour to show on home
                 page)
             </h2>
-            <ArticleForm {...article} />
+            <ArticleForm crud="update" {...article} />
         </>
     );
 }

@@ -5,13 +5,18 @@ import { useRouter } from "next/navigation";
 import TextField from "@mui/material/TextField";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import Switch from "@mui/material/Switch";
-import { IArticle } from "@/types/types";
-import { useReducer } from "react";
+import { IArticleForm } from "@/types/types";
+import { useReducer, useState } from "react";
 import { articleReducer } from "../utils/reducer";
+import {
+    updateArticleById,
+    createArticle,
+} from "../utils/apiCallsServerExperimental";
 
-const ArticleForm = (props: IArticle) => {
+const ArticleForm = (props: IArticleForm) => {
     const router = useRouter();
 
+    const [loading, setLoading] = useState<boolean>(false);
     const [state, dispatch] = useReducer(articleReducer, { ...props });
 
     const handleChange = (
@@ -27,23 +32,59 @@ const ArticleForm = (props: IArticle) => {
         router.push("/dashboard");
     };
 
+    let handleUpdate;
+    let handleCreate;
+    process.env.NODE_ENV === "development"
+        ? (handleUpdate = async () => {
+              setLoading(true);
+              await updateArticleById(props.article_id, state);
+              setLoading(false);
+          })
+        : (handleUpdate = () => {
+              setLoading(true);
+              setTimeout(() => setLoading(false), 2000);
+          });
+    process.env.NODE_ENV === "development"
+        ? (handleCreate = async () => {
+              setLoading(true);
+              await createArticle(state);
+              setLoading(false);
+          })
+        : (handleCreate = () => {
+              setLoading(true);
+              setTimeout(() => setLoading(false), 2000);
+          });
+
     return (
         <form onSubmit={(e) => e.preventDefault()}>
-            {/* <Button
-                color="secondary"
-                variant="contained"
-                onClick={() => props.setOpenModal(true)}
-            >
-                Preview
-            </Button>{" "}
+            {props.crud == "create" && (
+                <Button
+                    color="secondary"
+                    variant="contained"
+                    onClick={handleCreate}
+                    disabled={loading}
+                >
+                    Create
+                </Button>
+            )}
+            {props.crud == "update" && (
+                <Button
+                    color="secondary"
+                    variant="contained"
+                    onClick={handleUpdate}
+                    disabled={loading}
+                >
+                    Update
+                </Button>
+            )}
             <Button variant="contained" onClick={handleCancel}>
                 Close
-            </Button> */}
+            </Button>
             <br />
             <br />
             <p>
                 <Switch
-                    checked={props.article_public}
+                    defaultChecked={props.article_public || true}
                     onChange={() =>
                         dispatch({
                             type: "textChange",
@@ -61,7 +102,6 @@ const ArticleForm = (props: IArticle) => {
                 )}
             </p>
             <TextField
-                label="Title"
                 fullWidth
                 name="article_title"
                 defaultValue={props.article_title}
@@ -69,7 +109,6 @@ const ArticleForm = (props: IArticle) => {
             />
             <br /> <br />
             <TextField
-                label="Date"
                 fullWidth
                 defaultValue={props.article_date}
                 name="article_date"
@@ -88,7 +127,6 @@ const ArticleForm = (props: IArticle) => {
             <TextField
                 fullWidth
                 multiline
-                label="Cover Image"
                 rows={3}
                 defaultValue={props.article_image_small}
                 name="article_image_small"
