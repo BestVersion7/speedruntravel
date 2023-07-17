@@ -16,7 +16,6 @@ export default function CommentMapped(props: CommentProp) {
         );
         setComments(com);
     };
-
     useEffect(() => {
         getComments();
     }, [loading]);

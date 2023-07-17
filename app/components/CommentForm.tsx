@@ -5,16 +5,22 @@ import { createComment } from "../utils/apiCalls";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 
-const CommentForm = (props) => {
-    const commentRef = useRef();
+const CommentForm = (props: {
+    article_id: number;
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
+    const commentRef = useRef<any>();
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
             await createComment({
+                comment_user_name: "test",
+                comment_user_image:
+                    "https://res.cloudinary.com/crimson-flamingo/image/upload/v1561049193/030519%20drinks/drink-1561049192317.jpg",
+                comment_date: `${Date.now()}`,
                 article_id: props.article_id,
                 comment_body: commentRef.current.value,
-                comment_user_name: "Test",
             });
             commentRef.current.value = "";
             props.setLoading((v) => !v);

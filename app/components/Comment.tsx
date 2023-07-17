@@ -1,7 +1,8 @@
+import { IComment } from "@/types/types";
 import { formatDate } from "../utils/formatDate";
 import Image from "next/image";
 
-const Comment = (props) => {
+const Comment = (props: IComment) => {
     const newDate = formatDate(props.comment_date);
 
     return (

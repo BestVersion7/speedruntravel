@@ -39,11 +39,12 @@ export interface IReelCard extends IReel {
 }
 
 export interface IComment {
-    comment_id: number;
+    comment_id?: number;
     comment_user_name: string;
     comment_user_image: string;
     comment_date: string;
     comment_body: string;
+    article_id?: number
 }
 
 export interface ISurvey {

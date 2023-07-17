@@ -2,32 +2,35 @@
 
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { useRef, useState } from "react";
+import { useReducer, useState } from "react";
 import BasicModal from "./BasicModal";
 import { createEmail } from "../utils/apiCallsServerExperimental";
+import { emailReducer } from "../utils/reducer";
 
 const ContactForm = () => {
-    const nameRef = useRef();
-    const emailRef = useRef();
-    const phoneRef = useRef();
-    const messageRef = useRef();
+    const initialState = {
+        name: "test",
+        email: "test",
+        message: "test",
+        phone: "test",
+    };
+    const [state, dispatch] = useReducer(emailReducer, initialState);
     const [openModal, setOpenModal] = useState(false);
 
-    const handleSubmit = async (e) => {
+    const handleChange = (
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    ) => {
+        dispatch({
+            type: "textChange",
+            payload: { key: e.target.name, value: e.target.value },
+        });
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
         try {
             e.preventDefault();
-            await createEmail({
-                name: nameRef.current.value,
-                email: emailRef.current.value,
-                message: messageRef.current.value,
-                phone: phoneRef.current.value,
-            });
-
+            await createEmail(state);
             setOpenModal(true);
-            nameRef.current.value = "";
-            emailRef.current.value = "";
-            phoneRef.current.value = "";
-            messageRef.current.value = "";
         } catch (err) {
             console.log(err);
         }
@@ -43,14 +46,15 @@ const ContactForm = () => {
                 onSubmit={handleSubmit}
             >
                 <TextField
-                    inputRef={nameRef}
-                    required
+                    name="name"
+                    onChange={(e) => handleChange(e)}
                     placeholder="Name (required)"
                     label="Name (required)"
                 />
                 <TextField
-                    inputRef={emailRef}
+                    name="email"
                     required
+                    onChange={(e) => handleChange(e)}
                     placeholder="Email (required)"
                     label="Email (required)"
                     type="email"
@@ -58,7 +62,8 @@ const ContactForm = () => {
 
                 <TextField
                     // required
-                    inputRef={phoneRef}
+                    name="phone"
+                    onChange={(e) => handleChange(e)}
                     placeholder="Phone (optional)"
                     label="Phone (optional)"
                 />
@@ -66,16 +71,21 @@ const ContactForm = () => {
                 <TextField
                     required
                     multiline
+                    onChange={(e) => handleChange(e)}
                     placeholder="Message (required)"
                     minRows={5}
-                    inputRef={messageRef}
+                    name="message"
                     label="Message (required)"
                 />
                 <Button variant="contained" type="submit">
                     Submit
                 </Button>
             </form>
-            <BasicModal size="small" openModal={openModal} setOpenModal={setOpenModal}>
+            <BasicModal
+                size="small"
+                openModal={openModal}
+                setOpenModal={setOpenModal}
+            >
                 <p>
                     Your message has been delivered! Please expect a response
                     within 3-5 business days. Have a wonderful day!
