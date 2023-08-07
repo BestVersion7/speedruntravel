@@ -1,4 +1,4 @@
-import Link from "next/link";
+import HomeBGVideo from "./components/HomeBGVideo";
 import ReelCard from "./components/ReelCard";
 import {
     fetchLimitPublicReels,
@@ -8,24 +8,16 @@ import ArticleCard from "./components/ArticleCard";
 import SubscriberButton from "./components/SubscriberButton";
 import SurveyCity from "./components/survey/SurveyCity";
 import { IArticle, IReel } from "@/types/types";
+import About from "./components/About";
 
 export default async function Home() {
     const articles: IArticle[] = await fetchTwelvePublicArticles();
     const reels: IReel[] = await fetchLimitPublicReels();
     return (
         <div>
-            <h2>
-                Welcome to SpeedRunTravel blog where I write about my experience
-                visiting a new city and staying there for 24 hours or less. Let
-                me tell you my experience so you can decide to travel there or
-                to skip it. <SubscriberButton />
-            </h2>
+            <HomeBGVideo />
 
-            <div style={{ textAlign: "right" }}>
-                <Link href="/blog" className="nav-link">
-                    See all
-                </Link>
-            </div>
+            <h2>Most Recent Articles: </h2>
             <div className="article-body">
                 {articles.map((item) => (
                     <ArticleCard
@@ -36,15 +28,13 @@ export default async function Home() {
                 ))}
             </div>
             <br />
-            <SurveyCity />
+            <div className="grid-survey-about">
+                <SurveyCity />
+                <About />
+            </div>
             <div>
-                <h2>Pictures and Reels</h2>
+                <h2>Most Recent Pictures:</h2>
 
-                <div style={{ textAlign: "right" }}>
-                    <Link href="/reels" className="nav-link">
-                        See all
-                    </Link>
-                </div>
                 <div className="ig-wrap-home">
                     {reels.map((item, i) => (
                         <ReelCard
@@ -55,6 +45,14 @@ export default async function Home() {
                         />
                     ))}
                 </div>
+            </div>
+            <div style={{ textAlign: "center" }}>
+                <h2>Newsletter</h2>
+                <i>
+                    <p>Subscribe to my newsletter for the latest blog posts.</p>
+                    <p>Let's stay updated!</p>
+                    <SubscriberButton />
+                </i>
             </div>
             <br />
             <br />

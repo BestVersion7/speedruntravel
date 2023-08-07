@@ -12,56 +12,74 @@ export default function ArticleCardMapped(props: {
         (item) => new Date(item.article_date).getFullYear() === 2023
     );
 
-    const getArticle2023 = (month: number) =>
-        filter2023.reduce((acc: any[], item) => {
-            if (new Date(item.article_date).getMonth() === month) {
-                acc.push(
-                    <div key={item.article_id}>
-                        <ArticleCard
-                            key={item.article_id}
-                            url_base={props.url_base}
-                            {...item}
-                        />
-                    </div>
-                );
-            }
-            return acc;
-        }, []);
-    const getArticle2022 = (month: number) =>
-        filter2022.reduce((acc: any[], item) => {
-            if (new Date(item.article_date).getMonth() === month) {
-                acc.push(
-                    <div key={item.article_id}>
-                        <ArticleCard
-                            key={item.article_id}
-                            url_base={props.url_base}
-                            {...item}
-                        />
-                    </div>
-                );
-            }
-            return acc;
-        }, []);
+    // const getArticle2023 = (month: number) =>
+    //     filter2023.reduce((acc: any[], item) => {
+    //         if (new Date(item.article_date).getMonth() === month) {
+    //             acc.push(
+    //                 <div key={item.article_id}>
+    //                     <ArticleCard
+    //                         key={item.article_id}
+    //                         url_base={props.url_base}
+    //                         {...item}
+    //                     />
+    //                 </div>
+    //             );
+    //         }
+    //         return acc;
+    //     }, []);
+    // const getArticle2022 = (month: number) =>
+    //     filter2022.reduce((acc: any[], item) => {
+    //         if (new Date(item.article_date).getMonth() === month) {
+    //             acc.push(
+    //                 <div key={item.article_id}>
+    //                     <ArticleCard
+    //                         key={item.article_id}
+    //                         url_base={props.url_base}
+    //                         {...item}
+    //                     />
+    //                 </div>
+    //             );
+    //         }
+    //         return acc;
+    //     }, []);
 
-    const longMonths: string[] = [
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December",
-    ];
+    // const longMonths: string[] = [
+    //     "January",
+    //     "February",
+    //     "March",
+    //     "April",
+    //     "May",
+    //     "June",
+    //     "July",
+    //     "August",
+    //     "September",
+    //     "October",
+    //     "November",
+    //     "December",
+    // ];
 
     return (
         <div>
             <h2>Blog Posts:</h2>
             <>
+                <h2>2023</h2>
+                <div className="article-body">
+                    {filter2023.map((item) => (
+                        <div key={item.article_id}>
+                            <ArticleCard {...item} url_base={props.url_base} />
+                        </div>
+                    ))}
+                </div>
+                <h2>2022</h2>
+                <div className="article-body">
+                    {filter2022.map((item) => (
+                        <div key={item.article_id} className="article-body">
+                            <ArticleCard {...item} url_base={props.url_base} />
+                        </div>
+                    ))}
+                </div>
+            </>
+            {/* <>
                 <h2>2023</h2>
                 {longMonths
                     .map((item, i) => (
@@ -86,7 +104,7 @@ export default function ArticleCardMapped(props: {
                         </div>
                     ))
                     .sort((a: any, b: any) => b.key - a.key)}
-            </>
+            </> */}
         </div>
     );
 }

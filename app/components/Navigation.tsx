@@ -39,12 +39,7 @@ export default function Navigation() {
                     style={{ fontSize: "4em", color: "white" }}
                 />
 
-                <Drawer
-                    anchor="right"
-                    open={top}
-                    onClick={() => setTop((v) => !v)}
-                    className="mobile-drawer"
-                >
+                <Drawer anchor="right" open={top} className="mobile-drawer">
                     <Box
                         role="presentation"
                         style={{
