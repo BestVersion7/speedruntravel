@@ -29,7 +29,7 @@ export default function HomeBGVideo() {
                 {/* <p>EXPLORE. DREAM. DIS</p> */}
                 <p style={{ fontSize: "2em" }}>WHERE TO VISIT?</p>
                 <p style={{ fontSize: "1.5em" }}>
-                    This is a travel blog where I visit a city and staying there
+                    This is a travel blog where I visit a city and stay there
                     for 24 hours or less. Let me tell you my experience so you
                     can decide to travel there or skip it.
                 </p>
