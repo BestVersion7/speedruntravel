@@ -50,7 +50,7 @@ export default async function Home() {
                 <h2>Newsletter</h2>
                 <i>
                     <p>Subscribe to my newsletter for the latest blog posts.</p>
-                    <p>Let's stay updated!</p>
+                    <p>{`Let's`} stay updated!</p>
                     <SubscriberButton />
                 </i>
             </div>
