@@ -15,7 +15,7 @@ export default async function sitemap() {
         url: `${siteUrl}/blog/${article.article_id}/${transformTitle(
             article.article_title
         )}`,
-        lastModified: "2023-07-02T00:59:27.320Z",
+        lastModified: "2023-08-08T00:59:27.320Z",
     }));
 
     const routes = [
@@ -27,7 +27,7 @@ export default async function sitemap() {
         "/privacy-policy",
     ].map((route) => ({
         url: `${siteUrl}${route}`,
-        lastModified: "2023-07-02T00:59:27.320Z",
+        lastModified: "2023-08-08T00:59:27.320Z",
     }));
 
     return [...articles, ...routes];

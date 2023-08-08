@@ -10,7 +10,7 @@ export const metadata = {
 };
 
 export default async function ReelsPage() {
-    const reels:IReel[] = await fetchAllPublicReels();
+    const reels: IReel[] = await fetchAllPublicReels();
     return (
         <div>
             <div>

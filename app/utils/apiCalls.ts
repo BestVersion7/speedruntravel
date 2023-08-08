@@ -133,7 +133,7 @@ export const createPayment = async (data2: {}) => {
         console.log(err);
     }
 };
-export const fetchPaymentDetails = async (session_id: string|null) => {
+export const fetchPaymentDetails = async (session_id: string | null) => {
     try {
         const results = await fetch(
             `${url}/checkout_sessions?session_id=${session_id}`,

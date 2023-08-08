@@ -26,6 +26,9 @@ const CityFilter = (props: { city: string }) => {
                     onChange={handleChange}
                 >
                     <MenuItem disabled>UNITED STATES</MenuItem>
+                    <MenuItem style={{ fontWeight: "bold" }} value="miami">
+                        Miami, Florida
+                    </MenuItem>
                     <MenuItem style={{ fontWeight: "bold" }} value="tampa">
                         Tampa, Florida
                     </MenuItem>

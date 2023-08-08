@@ -16,14 +16,17 @@ export default function HomeBGVideo() {
         <div className="bg-container">
             <Image
                 className="img-bg"
-                src="/bgimg.png"
+                src="https://res.cloudinary.com/crimson-flamingo/image/upload/v1691525453/travelsite2022/static/bgimg.png"
                 height={1500}
                 width={1500}
                 alt="img"
             />
             <video ref={videoRef} loop muted className="vid-bg">
-                <source src="../bgvid.mp4" type="video/mp4" />
-                Your browser does not support Js.
+                <source
+                    src="https://res.cloudinary.com/crimson-flamingo/video/upload/v1691525464/travelsite2022/static/bgvid.mp4"
+                    type="video/mp4"
+                />
+                Your browser does not support Javascript.
             </video>
             <div className="bg-text">
                 {/* <p>EXPLORE. DREAM. DIS</p> */}
