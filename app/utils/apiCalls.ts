@@ -61,6 +61,19 @@ export const fetchPublicArticleById = async (article_id: number) => {
     }
 };
 
+export const fetchPublicSearchTitle = async (article_title: string) => {
+    try {
+        const results = await fetch(
+            `${publicUrl}/article/title?article_title=${article_title}`,
+            { cache: "no-cache" }
+        );
+        const data = await results.json();
+        return data;
+    } catch (err) {
+        console.log(err);
+    }
+};
+
 export const fetchAllPublicReels = async () => {
     try {
         const results = await fetch(`${publicUrl}/reel`, publicOptions);

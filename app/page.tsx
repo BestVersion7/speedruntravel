@@ -9,6 +9,7 @@ import SubscriberButton from "./components/SubscriberButton";
 import SurveyCity from "./components/survey/SurveyCity";
 import { IArticle, IReel } from "@/types/types";
 import About from "./components/About";
+import SearchBar from "./components/SearchBar";
 
 export default async function Home() {
     const articles: IArticle[] = await fetchTwelvePublicArticles();
@@ -16,7 +17,8 @@ export default async function Home() {
     return (
         <div>
             <HomeBGVideo />
-
+            <br />
+            <SearchBar />
             <h2>Most Recent Articles: </h2>
             <div className="article-body">
                 {articles.map((item) => (

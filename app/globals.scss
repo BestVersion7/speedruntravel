@@ -527,3 +527,19 @@ article {
         width: 30em;
     }
 }
+
+.searchlist {
+    height: 0;
+    z-index: 1;
+    @include mQ(50em) {
+        margin-left: 10em;
+    }
+    .searchlist-item {
+        background-color: white;
+        border: 1px solid black;
+        &:hover {
+            cursor: pointer;
+            background-color: lightgray;
+        }
+    }
+}
