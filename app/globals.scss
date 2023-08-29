@@ -528,18 +528,44 @@ article {
     }
 }
 
-.searchlist {
-    height: 0;
-    z-index: 1;
-    @include mQ(50em) {
-        margin-left: 10em;
+.search {
+    margin: 0 -0.9em;
+    @include mQ(30em) {
+        margin: 0 -1.4em;
     }
-    .searchlist-item {
-        background-color: white;
-        border: 1px solid black;
-        &:hover {
-            cursor: pointer;
-            background-color: lightgray;
+    @include mQ(50em) {
+        margin: 0 -2.4em;
+    }
+    .search-bar {
+        justify-content: end;
+        display: grid;
+        grid-template-columns: auto auto;
+        .search-icon {
+            padding: 0.2em;
+        }
+        .search-input {
+            background-color: white;
+            width: 100%;
+            max-width: 30em;
+            ::placeholder {
+                color: black;
+                opacity: .8
+            }
+        }
+    }
+    .searchlist {
+        height: 0;
+        z-index: 1;
+        @include mQ(50em) {
+            margin-left: 10em;
+        }
+        .searchlist-item {
+            background-color: white;
+            border: 1px solid black; 
+            &:hover {
+                cursor: pointer;
+                background-color: lightgray;
+            }
         }
     }
 }

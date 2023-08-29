@@ -9,7 +9,8 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Link from "next/link";
 import { transformTitle } from "../utils/transformTitle";
-import Button from "@mui/material/Button";
+import SearchIcon from "@mui/icons-material/Search";
+import TextField from "@mui/material/TextField";
 
 export default function SearchBar() {
     const [searchQuery, setSearchQuery] = useState("");
@@ -25,15 +26,18 @@ export default function SearchBar() {
     }, [searchQuery]);
 
     return (
-        <div style={{ textAlign: "right" }}>
-            <input
-                value={searchQuery}
-                placeholder="Type anything to start searching"
-                style={{ width: "22em" }}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                type="text"
-            />
-            <Button onClick={() => setSearchQuery("")}>Clear</Button>
+        <div className="search">
+            <div className="search-bar">
+                <TextField
+                    value={searchQuery}
+                    placeholder="Search anything"
+                    className="search-input"
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    type="text"
+                />
+                <SearchIcon className="search-icon" fontSize="large" />
+            </div>
+            {/* <Button onClick={() => setSearchQuery("")}>Clear</Button> */}
 
             <List className="searchlist">
                 {articles.map((item, index) => (
