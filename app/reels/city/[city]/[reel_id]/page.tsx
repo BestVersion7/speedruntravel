@@ -21,10 +21,6 @@ export async function generateMetadata({
     };
 }
 
-export const generateStaticParams = () => {
-    return [{ city: "tampa", reel_id: "92" }];
-};
-
 export default async function CityPageFilterId({
     params,
 }: {
