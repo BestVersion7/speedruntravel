@@ -29,9 +29,9 @@ const CityFilter = (props: { city: string }) => {
                     <MenuItem style={{ fontWeight: "bold" }} value="miami">
                         Miami, Florida
                     </MenuItem>
-                    {/* <MenuItem style={{ fontWeight: "bold" }} value="tampa">
+                    <MenuItem style={{ fontWeight: "bold" }} value="tampa">
                         Tampa, Florida
-                    </MenuItem> */}
+                    </MenuItem>
                     <MenuItem style={{ fontWeight: "bold" }} value="dc">
                         Washington, D.C.
                     </MenuItem>

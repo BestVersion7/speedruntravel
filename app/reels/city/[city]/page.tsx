@@ -2,10 +2,6 @@ import ReelCardMapped from "@/app/components/ReelCardMapped";
 import { fetchAllPublicReelsByCity } from "@/app/utils/apiCalls";
 import CityFilter from "@/app/components/CityFilter";
 
-export const generateStaticParams = () => {
-    return [{ city: "tampa" }];
-};
-
 export async function generateMetadata({
     params,
 }: {
